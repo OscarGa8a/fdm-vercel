@@ -1,0 +1,26 @@
+.sharing {
+    padding-bottom: 10px;
+}
+.sharing-list {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.sharing-list li {
+    background: red;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: white;
+}
+
+.sharing-list li:first-child {
+    margin-right: 10px;
+}
+
+.sharing-list li:last-child {
+    margin-left: 10px;
+}
+
+.sharing-item-fb i {
+    padding: 0 5px;
+}

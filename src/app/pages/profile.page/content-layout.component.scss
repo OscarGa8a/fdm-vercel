@@ -1,0 +1,18 @@
+.fit-profile {
+  width: 100%;
+  object-fit: contain;
+  height: 60px;
+}
+
+@media (max-width: 577px) {
+  .page-wrapper .page-body-wrapper .page-sidebar {
+    width: 312px;
+    &.open {
+      margin-left: calc(-314px);
+    }
+  }
+
+  .page-wrapper .page-body-wrapper .page-sidebar ~ .page-body {
+    margin-left: 0;
+  }
+}

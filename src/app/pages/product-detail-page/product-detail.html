@@ -1,0 +1,90 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6 justify-content-end pr-0">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb pr-0">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">product</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<app-product-view [product]="product" [slideRightNavConfig]="slideRightNavConfig"></app-product-view>
+<!-- Section ends -->
+<!-- product-tab starts -->
+<section class="bg-white tab-product m-0">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h3 class="h3-title">Este diseño en otros productos</h3>
+        </div>
+        <div class="col-sm-12 col-lg-12">
+            <ul class="nav nav-tabs nav-material justify-content-center" id="top-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">
+                        <i style="font-size: 17px" class="icofont icofont-king-crown mr-1"></i>Hombres
+                    </a>
+                    <div class="material-border"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="top-female-tab" data-toggle="tab" href="#top-female" role="tab" aria-selected="false">
+                        <i style="font-size: 17px" class="icofont icofont-queen-crown mr-1"></i>Mujeres
+                    </a>
+                    <div class="material-border"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="top-kid-tab" data-toggle="tab" href="#top-female" role="tab" aria-selected="false">
+                        <i style="font-size: 17px" class="icofont icofont-toy-hand mr-1"></i>Niños y bébes
+                    </a>
+                    <div class="material-border"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="top-acc-tab" data-toggle="tab" href="#top-acc" role="tab" aria-selected="true">
+                        <i style="font-size: 17px" class="icofont icofont-love mr-1"></i>Accesorios y mas
+                    </a>
+                    <div class="material-border"></div>
+                </li>
+            </ul>
+            <div class="tab-content nav-material" id="top-tabContent">
+                <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                    <app-product-slider-fourteen [products]="products"></app-product-slider-fourteen>
+                </div>
+                <div class="tab-pane fade show" id="top-female" role="tabpanel" aria-labelledby="top-female-tab">
+                    <h1>Carousel producto mujeres</h1>
+                </div>
+                <div class="tab-pane fade show" id="top-acc" role="tabpanel" aria-labelledby="top-acc-tab">
+                    <h1>Carousel accesorioss</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<app-product-specifications></app-product-specifications>
+<!-- product-tab ends -->
+<div class="container">
+    
+</div>
+
+<section class="bg-white other-products p-0">
+    <div class="container">
+          <app-product-slider-fourteen [products]="products" title="Otros usuarios compraron"></app-product-slider-fourteen>
+    </div>
+</section>
+
+<div class="container">
+   <app-product-slider-fourteen [products]="products" title="Diseños similares"></app-product-slider-fourteen>
+</div>
+<div class="other-products bg-white">
+    <app-product-tags [title]="'Te puede interesar'" [tags]="product.tags"></app-product-tags>
+</div>
+

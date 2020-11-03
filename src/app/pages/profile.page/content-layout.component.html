@@ -1,0 +1,29 @@
+<div>
+    <div class="page-wrapper">
+        <app-header (rightSidebarEvent)="rightSidebar($event)"></app-header>
+        <div class="page-body-wrapper">
+            <div class="page-sidebar" [class.open]="navServices.collapseSidebar">
+                <div class="main-header-left d-none d-lg-block">
+                    <div class="logo-wrapper"><a [routerLink]="'/home'"><img class="blur-up lazyloaded fit-profile" src="assets/images/icon/logo-1.png" alt=""></a></div>
+                </div>
+                <div class="sidebar custom-scrollbar">
+                    <div class="sidebar-user text-center">
+                        <div *ngIf="(role$ | async) === 'design'">
+                            <img class="img-60 rounded-circle" src="assets/images/dashboard/man.png" alt="#">
+                        </div>
+                        <h6 class="mt-3 f-14">JOHN</h6>
+                        <p style="color: white">Usuario {{role$ | async}}</p>
+                    </div>
+                        <app-sidebar-buyer [role]="role$ | async"></app-sidebar-buyer>
+                </div>
+            </div>
+            <div class="page-body">
+                <app-breadcrumb></app-breadcrumb>
+                <main [@animateRoute]="getRouterOutletState(o)">
+                    <router-outlet #o="outlet"></router-outlet>
+                </main>
+            </div>
+        </div>
+    </div>
+
+</div>

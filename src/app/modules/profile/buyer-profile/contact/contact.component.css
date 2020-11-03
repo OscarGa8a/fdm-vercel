@@ -1,0 +1,9 @@
+.dropzone {
+    height: 160px;
+    padding: 12px;
+    border: 2px dashed #ced4da;
+}
+
+.dropzone .dz-preview {
+    margin: 0;
+}

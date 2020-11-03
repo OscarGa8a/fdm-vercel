@@ -1,0 +1,60 @@
+@import "../../../vendor/pace/pace-orange-min.css";
+@import "../../../assets/scss/color1";
+
+.main-nav-center {
+  padding: 5px 0;
+  border-top: solid 1px #dddddd;
+}
+
+.main-menu {
+  padding: 3px 0;
+}
+
+.logo-header {
+  object-fit: contain;
+  height: 45px;
+}
+
+body.custom .main-nav-center {
+  display: none;
+}
+
+body.custom .top-header {
+  display: none;
+}
+body.custom header.sticky {
+  position: initial;
+}
+
+body.custom .header-main-class {
+  padding: 0 60px;
+  max-width: 100%;
+}
+body.custom .logo-header {
+  height: 35px;
+}
+body.custom .search {
+  display: none;
+}
+body.custom .search-xs {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  body.custom .header-main-class {
+    padding: 0 15px;
+  }
+  body.custom .header-main-class .mobile-wishlist {
+    // position: initial !important;
+    // top: initial;
+    // bottom: initial;
+    // right: initial;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  body.custom .header-main-class {
+    padding: 0 80px;
+    max-width: 1700px;
+  }
+}

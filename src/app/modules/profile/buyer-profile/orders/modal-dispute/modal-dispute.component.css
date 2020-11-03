@@ -1,0 +1,18 @@
+.mat-dialog-container {
+    width: 812px;
+    margin: auto;
+}
+
+.mat-dialog-content {
+    max-height: 70vh;
+}
+
+.form-actions {
+    text-align: center;
+}
+
+.radio-group {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}

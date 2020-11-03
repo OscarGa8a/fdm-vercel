@@ -1,0 +1,69 @@
+@import "~bootstrap/scss/bootstrap";
+@import "feather-icon/feather-icon";
+
+@import "theme/variables";
+@import "theme/admin_style";
+@import "theme/chartist";
+@import "theme/datatable";
+@import "icons/icoicon/icons";
+// Flag contents
+@import "flag-icon/flag-icon-base";
+@import "flag-icon/flag-icon-more";
+@import "flag-icon/flag-icon-list";
+@import "icons/themify/themify-icons";
+@import "~dropzone/dist/min/dropzone.min.css";
+@import "~ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+:root {
+  --header-height: 59px;
+  --bottom-menu: 81px;
+  --height-available: calc(var(--header-height) + var(--bottom-menu));
+}
+@media (max-width: 960px) {
+  :root {
+    --header-height: 65px;
+    --bottom-menu: 65px;
+  }
+}
+
+.d-xs-none {
+  display: block;
+}
+@media (max-width: 480px) {
+  .d-xs-none {
+    display: none !important;
+  }
+  .b-bottom {
+    border-bottom: solid 1px #dddddd;
+    padding: 7px 0 !important;
+    &:nth-child(0n + 2) {
+      border-top: solid 1px #dddddd;
+    }
+  }
+}
+
+/*slick carousel arrows*/
+.slick-prev:before {
+  content: "\f104";
+}
+
+.slick-next:before {
+  content: "\f105";
+}
+.slick-prev:before,
+.slick-next:before {
+  font: normal normal normal 14px/1 FontAwesome;
+  opacity: 1;
+  color: white;
+  background-color: #f44336;
+  border-radius: 3px;
+  height: 100%;
+  border: 1px solid;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}

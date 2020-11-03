@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <ng-container *ngIf="(orders$ | async) as orders">
+        <ng-container *ngIf="orders.length; else NoOrders">
+            <div class="row">
+                <ng-container *ngFor="let order of orders">
+                    <div class="col-sm-4 col-md-3 pb-3">
+                        <mat-card (click)="redirect(order?.id)" class="example-card">
+                            <mat-card-content>
+                              <h5><b>{{order?.number_order}}</b></h5>
+                              <p class="stock mb-0"><b>Fecha:</b>{{order?.date_init}}</p>
+                              <p class="mb-0"><b>Cantidad de productos:</b>{{order?.count}}</p>
+                              <p class="mb-0"><b>Valor pedido:</b>${{order?.price}}</p>
+                              <p class="mb-0"><label class="{{order?.state}}">{{order?.state}}</label></p>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <ng-template #NoOrders>
+            <div class="no-orders">
+                <div>
+                    <img class="fit-nothing" src="https://cdn.dribbble.com/users/357797/screenshots/3998541/empty_box.jpg" alt="nothing">
+                </div>
+                <div>
+                    <h3>Opps, en este momento no tienes ordenes, pero puedes ir a la tienda y comprar algunos porductos!</h3>
+                </div>
+            </div>
+        </ng-template>
+        
+    </ng-container>
+
+    <div class="row order-button pb-3">
+        <div class="col-12">
+            <a [routerLink]="['/home/shop/all']" class="btn btn-solid">Ir a la tienda</a>
+        </div>
+    </div>
+</div>

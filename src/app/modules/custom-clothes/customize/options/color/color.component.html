@@ -1,0 +1,195 @@
+<div class="option-container">
+  <p class="description">
+    Edita el diseño seleccionado y ubícalo directamente en el producto. <br />
+    <span
+      >(Recuerda que hay diseños de color editable, no editable y multicara)
+      <a href="">Más info</a></span
+    >
+  </p>
+  <p class="note">
+    <span>Nota:</span> puedes girar y redimensionar el diseño directamente,
+    encima del producto.
+  </p>
+  <div class="filas-container">
+    <div class="fila" [class.show]="currentOptions == 'color'">
+      <p>Editar capas de color en diseño (color - tipo de impresión)</p>
+    </div>
+
+    <div class="fila" [class.show]="currentOptions == 'size'">
+      <p>Tamaño</p>
+      <div class="fila-right">
+        <div class="item-container">
+          <label for="">Ancho (cm)</label>
+          <input type="number" id="design-width" />
+        </div>
+        <div class="item-container">
+          <label for="">Alto (cm)</label>
+          <input type="number" id="design-height" />
+        </div>
+      </div>
+    </div>
+    <div class="fila" [class.show]="currentOptions == 'position'">
+      <p>Posición</p>
+      <div class="fila-right">
+        <div class="item-container">
+          <label for="">X (cm)</label>
+          <input type="number" id="design-x" />
+        </div>
+        <div class="item-container">
+          <label for="">Y (cm)</label>
+          <input type="number" id="design-y" />
+        </div>
+      </div>
+    </div>
+    <div class="fila" [class.show]="currentOptions == 'turn'">
+      <p>Giro</p>
+      <div class="fila-right">
+        <div class="item-container">
+          <label for="">grados</label>
+          <input type="number" id="design-x" />
+        </div>
+      </div>
+    </div>
+    <div class="fila" [class.show]="currentOptions == 'flip'">
+      <p>Voltear</p>
+      <div class="fila-right">
+        <button>
+          <span class="material-icons notranslate">
+            flip
+          </span>
+        </button>
+        <button class="left">
+          <span class="material-icons notranslate">
+            flip
+          </span>
+        </button>
+        <button class="bottom">
+          <span class="material-icons notranslate">
+            flip
+          </span>
+        </button>
+        <button class="top">
+          <span class="material-icons notranslate">
+            flip
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- <div class="tabs">
+      <div
+        *ngFor="let layer of layersColor._objects; let i = index"
+        (click)="changeLayer(i)"
+        class="layer-tab"
+        [class.active]="currentLayer == i"
+      >
+        <span>Capa {{ i + 1 }}</span
+        ><span
+          class="current-layer-color"
+          [ngStyle]="{ background: layer.filters[0].color }"
+        ></span>
+      </div>
+    </div>
+    <div class="type-of-prints">
+      <span
+        *ngFor="let type of types"
+        [class.active]="type === currentType"
+        (click)="changeCurrentTye(type)"
+        >{{ type }}</span
+      >
+    </div>
+    <div class="colors">
+      <div
+        class="color"
+        [ngStyle]="{ background: initialColors[currentLayer] }"
+        (click)="setColor(initialColors[currentLayer])"
+        [class.active]="
+          initialColors[currentLayer] ==
+          layersColor._objects[currentLayer].filters[0].color
+        "
+      ></div>
+      <div
+        class="color"
+        *ngFor="let color of colors[currentType]"
+        [ngStyle]="{ background: color }"
+        (click)="setColor(color)"
+        [class.active]="
+          color == (layersColor._objects[currentLayer]?.filters)[0].color
+        "
+      ></div>
+    </div> -->
+
+    <div
+      class="buttons-container"
+      [class.padding-bottom]="currentOptions == 'flip'"
+      [class.hide]="currentOptions == 'color'"
+    >
+      <div>
+        <p></p>
+        <button (click)="resetColors()">Volver al original</button>
+      </div>
+      <div>
+        <p></p>
+        <button (click)="resetColors()">Borrar</button>
+      </div>
+    </div>
+  </div>
+  <div class="characteristics-container">
+    <h3>Características del diseño</h3>
+    <ul>
+      <li>
+        <strong>Concepto:</strong> Llanero si soy llanero. Un homenaje a la
+        cultura llanera colombiana en el marco del centenario de la ciudad de
+        Acacias Meta.
+      </li>
+      <li><strong>Fondos recomendados:</strong> Claros, pastel, oscuros.</li>
+      <li><strong>Propiedades: </strong> Color editable, multicara.</li>
+    </ul>
+  </div>
+
+  <div class="tabs-button">
+    <button
+      (click)="changeMobileOption('color')"
+      [class.active]="currentOptions == 'color'"
+    >
+      <span class="material-icons">
+        colorize
+      </span>
+      Color
+    </button>
+    <button
+      (click)="changeMobileOption('size')"
+      [class.active]="currentOptions == 'size'"
+    >
+      <span class="material-icons">
+        aspect_ratio
+      </span>
+      Tamaño
+    </button>
+    <button
+      (click)="changeMobileOption('position')"
+      [class.active]="currentOptions == 'position'"
+    >
+      <small>(x,y)</small>
+      Posición
+    </button>
+    <button
+      (click)="changeMobileOption('turn')"
+      [class.active]="currentOptions == 'turn'"
+    >
+      <span class="material-icons">
+        rotate_left
+      </span>
+      Giro
+    </button>
+    <button
+      (click)="changeMobileOption('flip')"
+      [class.active]="currentOptions == 'flip'"
+    >
+      <span class="material-icons">
+        repeat
+      </span>
+      Voltear
+    </button>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<section id="tags" class="section-space pb-5">
+    <div class="container">
+        <ng-container *ngIf="title">
+            <div class="row">
+                <div class="col-12 product-related">
+                    <h3>{{title}}</h3>
+                </div>
+            </div>
+        </ng-container>
+        <div class="row">
+            <ng-container *ngIf="tags; else noTags">
+                <div *ngFor="let tag of tags" class="col-lg-1 col-3 product-related">
+                    <a [routerLink]="['/home/shop']"
+                       [queryParams]="{ filter: tag.toLowerCase() }"
+                       queryParamsHandling="merge" class="select-item"><span class="select-label">{{tag}}</span></a>
+                </div>
+            </ng-container>
+            <ng-template #noTags>
+                <h4>Este producto no tiene etiquetas relacionadas</h4>
+            </ng-template>
+
+        </div>
+    </div>
+</section>

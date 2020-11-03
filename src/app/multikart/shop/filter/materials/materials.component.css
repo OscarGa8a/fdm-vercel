@@ -1,0 +1,12 @@
+.collapse-content {
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: max-height 0.7s ease, visibility 0.6s;
+}
+.open .collapse-content {
+    max-height: initial;
+    visibility: visible;
+    overflow: visible;
+    transition: max-height 0.7s ease, visibility 1s 0.2s ease;
+}

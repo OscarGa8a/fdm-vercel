@@ -1,0 +1,140 @@
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-6 col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home"></a>Inicio</li>
+                        <li class="breadcrumb-item active" aria-current="page">Colecciones</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+
+
+<!-- section start -->
+<section class="filter-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="title1 ">
+                    <h2 class="title-inner1">Colecciones</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container pb-4">
+    <section class="collections-grid">
+        <ng-container *ngFor="let c of collections; let i = index">
+            <div (click)=redirectShop(c?.slug) class="card-collection" [style.background-image]="'url(' + c?.image + ')'"
+                 [class.tall]="i === 0 || i === 1 || (i + 1)% 8 === 0 || (i + 1)% 9 === 0"
+                 [class.wide]="i === 0 || (i + 1)% 7 === 0 || (i + 1)% 8 === 0">
+                <p [style.background]="c?.bg" [style.color]="c?.color" class="title">{{c?.name}}</p>
+            </div>
+        </ng-container>
+    </section>
+</div>
+<!-- <section #gallery class="portfolio-section pt-0">
+    <div class="container">
+        <div class="isotopeContainer row">
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/2.jpg" data-source="http://500px.com/photo/32736307" title="Into The Blue" >
+                            <div class="overlay-background">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <img src="assets/images/portfolio/2.jpg" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/4.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre">
+                            <img src="assets/images/portfolio/4.jpg" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/7.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" >
+                            <div class="overlay-background">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <img src="assets/images/portfolio/7.jpg" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/9.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre">
+                            <div class="overlay-background">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <img src="assets/images/portfolio/9.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/10.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" >
+                            <div class="overlay-background">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <img src="assets/images/portfolio/10.jpg" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/11.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" >
+                            <div class="overlay-background">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <img src="assets/images/portfolio/11.jpg" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/13.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" >
+                            <div class="overlay-background">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <img src="assets/images/portfolio/13.jpg" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 isotopeSelector fashion">
+                <div class="overlay">
+                    <div class="border-portfolio">
+                        <a href="assets/images/portfolio/14.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" >
+                            <div class="overlay-background">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <img src="assets/images/portfolio/14.jpg" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- Section ends -->

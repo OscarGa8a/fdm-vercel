@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("./assets/fonts/icomoon/style.css");
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+/* You can add global styles to this file, and also import other style files */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar:horizontal {
+  height: 5px;
+  width: 5px;
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+*::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: #c3351a;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+*::-webkit-scrollbar-thumb:active {
+  background-color: #c3351a;
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+*::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo cuando esté en active o hover */
+*::-webkit-scrollbar-track:hover,
+*::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+
+.container-fdm {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.margin-header {
+  margin-top: 122px;
+}
+body.custom .margin-header {
+  margin: 0;
+}
+body.custom footer {
+  display: none;
+}
+body.custom {
+  min-height: calc(100vh);
+  background: #fcfcfc;
+}
+
+@media screen and (max-width: 960px) {
+  body.custom {
+    padding-bottom: 65px;
+  }
+}
+.custom-select {
+  border: none !important;
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(195, 53, 26, 0.33) !important;
+    outline: none !important;
+  }
+}
+
+.select-item {
+  display: inline-block;
+  margin-bottom: 1px;
+  min-width: 2em;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+
+  input[type="radio"] {
+    display: none;
+    &:checked + label:before {
+      display: none;
+    }
+    &:checked + label {
+      background: #c3351a;
+      border: 1px solid #c3351a;
+      color: #fff;
+    }
+  }
+}
+.select-label {
+  border: 1px solid #666;
+  border-radius: 2px;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  color: #666;
+  background: white;
+  cursor: pointer;
+  display: block;
+  line-height: 2.5rem;
+  padding: 0 0.75rem;
+  margin: 1px 4px 1px 0;
+  text-transform: capitalize;
+}
+
+.select-label:hover {
+  border: 1px solid #c3351a;
+  color: #c3351a;
+}
+
+.fit-nothing {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+}

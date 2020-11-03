@@ -1,0 +1,110 @@
+<section class="porduct-gallery">
+    <div class="collection-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1 col-sm-2 col-xs-12">
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <ngx-slick-carousel class="slider-right-nav" #slickModal="slick-carousel" [config]="slideRightNavConfig">
+                                <div ngxSlickItem *ngFor="let image of product.pictures">
+                                    <div>
+                                        <img [src]="image" alt="" class="img-fluid">
+                                    </div>
+                                </div>
+                            </ngx-slick-carousel>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-10 col-xs-12  order-up">
+                    <ngx-slick-carousel class="product-right-slick" #slickModal="slick-carousel" [config]="slideRightConfig">
+                        <div ngxSlickItem *ngFor="let image of product.pictures">
+                            <div>
+                                <img [src]="image" alt="" class="img-fluid img-lg">
+                            </div>
+                        </div>
+                    </ngx-slick-carousel>
+                </div>
+                <div class="col-lg-5 p-0">
+                    <div class="product-right detail">
+                        <h2>{{product.name}}</h2>
+                        <h4 *ngIf="!productsService?.catalogMode"><del>{{product.salePrice | currency:productsService?.currency:'symbol'}}</del><span>{{product.discount}}% off</span></h4>
+                        <h3 *ngIf="!productsService?.catalogMode">{{product.price | currency:productsService?.currency:'symbol'}}</h3>
+                        <ul class="color-variant" *ngIf="!productsService?.catalogMode">
+                            <li [class]="variant.color" (click)="slickModal.slickGoTo(i)" *ngFor="let variant of product.variants let i = index"></li>
+                        </ul>
+                        <h6 class="product-title">Tamaño </h6>
+                        <div class="size-box">
+                            <ul>
+                                <li [ngClass]="{'active': selectedSize == size}" *ngFor="let size of product.size">
+                                    <a [routerLink]="" (click)="changeSizeVariant(size)">{{size}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title">Acerca del producto</h6>
+                            <p><b>Categoria:</b> {{product?.category}}</p>
+                            <p><b>Material:</b> Algodón</p>
+                            <p><b>Diseño multicapa:</b> {{product?.multicapa ? 'SI' : 'NO'}}, 
+                                <a target="blank" style="color:#ff4c3b" href="{{product?.multicapa}}">Ver más</a></p>
+                            <p><b>Diseño de color editable:</b> {{product?.multicolor ? 'SI' : 'NO'}},   
+                                <a target="blank" style="color:#ff4c3b" href="{{product?.multicolor}}">Ver más</a></p>
+                            <p><b>Tipo de impresión:</b> Sublimado</p>
+                            <p>Más información acerca del producto?, <a class="link" href="{{location?.path()}}#detalle">Click aquí!</a></p>
+                            <p>Encuentra tags o etiquetas relacionadas al producto: <a class="link" href="{{location?.path()}}#tags">Click aquí!</a></p>
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title" [class.open]="visible">Acerca del diseño</h6>
+                            <p appCollapse [visibleContent]="visible" class="content">{{product.shortDetails}}</p>
+                            <a type="button" style="color:#ff4c3b" (click)="openContent()">{{visible ? 'Ver menos': 'Ver más'}}</a>
+                        </div>
+                        <div class="product-description border-product" *ngIf="!productsService?.catalogMode">
+                            <h6 class="product-title d-inline-block mr-1">Cantidad</h6>
+                            <h5 class="avalibility d-inline-block" *ngIf="counter <= product.stock"><span>(En Stock)</span></h5>
+                            <h5 class="avalibility d-inline-block" *ngIf="counter > product.stock"><span>(No hay Stock)</span></h5>
+                            <div class="qty-box">
+                                <div class="input-group">
+                                  <span class="input-group-prepend">
+                                    <button type="button" (click)="decrement()" class="btn quantity-left-minus" data-type="minus" data-field="">
+                                     <i class="ti-angle-left"></i>
+                                    </button>
+                                  </span>
+                                    <input type="text" name="quantity" disabled class="form-control input-number" value="{{counter}}">
+                                    <span class="input-group-prepend">
+                                    <button type="button" (click)="increment()" class="btn quantity-right-plus" data-type="plus" data-field="">
+                                    <i class="ti-angle-right"></i>
+                                    </button>
+                                   </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-buttons grid-buttons" *ngIf="!productsService?.catalogMode">
+                            <a [routerLink]="" (click)="addToCart(product, counter)" class="btn btn-solid btn-car" [class.disabled]="counter > product.stock">
+                                <i class="icofont icofont-cart-alt"></i> Añadir a carrito
+                            </a>
+                            <a [routerLink]="" (click)="buyNow(product, counter)" class="btn btn-solid btn-buy" [class.disabled]="counter > product.stock">
+                                <i class="fa fa-credit-card"></i> comprar
+                            </a>
+                            <button type="button" class="btn btn-solid btn-wishlit" (click)="addToWishlist(product)">
+                                <i class="ti-heart"></i><span class="title-font"> Añadir a deseos</span>
+                            </button>
+                            <a [routerLink]="'/custom'" class="btn btn-solid btn-custom">
+                                <i style="font-size: 16px" class="ti-pencil-alt"></i> Personalizar
+                            </a>
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title">Compartir</h6>
+                            <div class="product-icon">
+                                <ul class="product-social">
+                                    <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://plus.google.com/discover"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

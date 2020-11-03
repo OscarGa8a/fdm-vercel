@@ -1,0 +1,31 @@
+.whsl{
+  position: absolute;
+  background: #1d1717;
+  width: 24px;
+  height: 16px;
+  color: #fff;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 10px;
+  font-weight: 600;
+  top: -8px;
+  left: 13px;
+  padding: 2px 2px;
+}
+
+.heart {
+  font-size: 20px;
+  position: absolute;
+  top: -13px;
+  left: 0;
+  color: #f3483a;
+}
+
+@media (max-width: 577px) {
+  .mobile-wishlist {
+    position: fixed !important;
+    bottom: 27px;
+    right: 64%;
+  }
+}

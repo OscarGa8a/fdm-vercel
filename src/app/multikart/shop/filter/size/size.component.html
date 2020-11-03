@@ -1,0 +1,11 @@
+<div class="collection-collapse-block border-0" [class.open]="visible">
+    <h3 (click)="open()" class="collapse-block-title">Tamaño</h3>
+    <div appCollapse [visibleContent]="visible" class="collection-collapse-block-content">
+        <div class="collection-brand-filter">
+            <div class="custom-control custom-checkbox collection-filter-checkbox" *ngFor="let filter of tagsFilters">
+                <input type="checkbox" class="custom-control-input" [value]="filter.size" (change)=checkedFilter($event) id="{{filter.size}}">
+                <label class="custom-control-label" for="{{filter.size}}">{{filter.size}}</label>
+            </div>
+        </div>
+    </div>
+</div>

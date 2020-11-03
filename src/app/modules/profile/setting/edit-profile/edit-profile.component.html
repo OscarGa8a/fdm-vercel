@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <div class="form-group">
+        <label class="col-form-label" for="name">Nombres:</label>
+        <input formControlName="name" class="form-control" id="name" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" for="lastName">Apellidos:</label>
+        <input formControlName="lastName" class="form-control" id="lastName" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" for="id">Tipo de identificación:</label>
+        <select formControlName="typeId" class="form-control" id="id">
+            <option value="1">Cedula de ciudadania</option>
+            <option value="2">Cedula de extranjería</option>
+            <option value="3">Pasaporte</option>
+            <option value="4">Tarjeta de identidad</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" for="numberId">Número de identificación:</label>
+        <input formControlName="id" class="form-control" id="numberId" />
+    </div>
+    <div class="form-group">
+        <label for="birthday" class="col-form-label">Fecha de nacimiento:</label>
+        <mat-form-field class="d-block example-full-width">
+            <mat-label>Elije una fecha <small>(dd-mm-aaaa)</small></mat-label>
+            <input formControlName="birthday" id="birthday" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" for="address">Dirección:</label>
+        <input formControlName="address" class="form-control" id="address"/>
+    </div>
+    <div class="form-group">
+        <label for="country" class="col-form-label"><span>*</span> País:</label>
+        <select formControlName="country" class="form-control digits" id="country">
+            <option>Colombia</option>
+        </select>
+    </div>
+    <div class="form-group row px-md-3 px-sm-0 mb-0">
+        <div class="form-group px-0 col-md-6 col-sm-12">
+            <label for="state" class="col-form-label"><span>*</span> Departamento:</label>
+            <select formControlName="state" class="form-control digits" id="state">
+                <option>Meta</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6 col-sm-12 pr-md-0 pl-sm-0 pl-md-3">
+            <label for="city" class="col-form-label"><span>*</span> Ciudad:</label>
+            <select formControlName="city" class="form-control digits" id="city">
+                <option>Villavicencio</option>
+                <option>Acacias</option>
+                <option>Guamal</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" for="postal">Código postal:</label>
+        <input formControlName="postal" class="form-control" id="postal" />
+    </div>
+    <button class="form-control btn btn-primary" type="submit">Confirmar</button>
+</form>

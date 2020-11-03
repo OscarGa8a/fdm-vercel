@@ -1,0 +1,22 @@
+<!-- Product slider -->
+<section class="section-b-space ">
+    <div class="container">
+        <ng-container *ngIf="title">
+            <div class="row">
+                <div class="col-12 product-related">
+                    <h3>{{title}}</h3>
+                </div>
+            </div>
+        </ng-container>
+        <div class="row">
+            <div class="col">
+                <ngx-slick-carousel class="product-4 product-m" #slickModal="slick-carousel" [config]="productSlideConfig">
+                    <div ngxSlickItem class="product-box" *ngFor="let product of products | slice:0:8">
+                        <app-product [product]="product"></app-product>
+                    </div>
+                </ngx-slick-carousel>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product slider end -->

@@ -1,0 +1,63 @@
+.example-card {
+    margin-bottom: 1rem;
+    padding-top: 0px;
+}
+.example-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    letter-spacing: 0.7px;
+    color: #313131;
+}
+.space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-fit-img {
+    object-fit: cover;
+    height: 250px;
+}
+.icon {
+    font-size: 25px;
+}
+
+.size {
+    border: solid 1px lightgray;
+    padding: 4px;
+    border-radius: 1px;
+    line-height: normal;
+    margin: 0 2px;
+}
+
+.size:last-child {
+    margin-right: 0;
+    margin-left: 2px;
+}
+
+.size:first-child {
+    margin-left: 0;
+    margin-right: 2px;
+}
+
+.lable3 {
+    border-top: 26px solid #ff4c3b;
+    border-right: 12px solid transparent;
+    text-align: center;
+    width: 57px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.text-new {
+    position: absolute;
+    z-index: 2;
+    padding: 4px 0 0 8px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    top: -3px;
+    left: -6px;
+}

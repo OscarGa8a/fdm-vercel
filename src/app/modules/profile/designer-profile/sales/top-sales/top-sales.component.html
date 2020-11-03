@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Lista de ventas</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-sm-2">
+                            <input [formControl]="search" type='text' class="filter-ngx form-control" placeholder='Buscar por año o nombre del diseño...'/>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-primary-gradien w-sm-100" (click)="updateFilter()" type="button">Buscar</button>
+                        </div>
+                    </div>
+                    <div class="custom-datatable">
+                        <ngx-datatable [scrollbarH]="true" class="bootstrap" [rows]="temp" [columnMode]="'force'" cssClasses="datatable-icon-down" [headerHeight]="50"
+                                       [footerHeight]="70"  (page)="changePage($event)" [rowHeight]="'auto'" [limit]="10">
+                            <ngx-datatable-column name="Diseño" prop="design"></ngx-datatable-column>
+                            <ngx-datatable-column name="Nombre del diseño" prop="name_design"></ngx-datatable-column>
+                            <ngx-datatable-column name="Cantidad" prop="count"></ngx-datatable-column>
+                            <ngx-datatable-column name="Comisión" prop="total"></ngx-datatable-column>
+                        </ngx-datatable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

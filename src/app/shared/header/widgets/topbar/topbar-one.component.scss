@@ -1,0 +1,31 @@
+@media (max-width: 577px){
+  .mobile-helpcenter {
+    position: fixed;
+    bottom: 20px;
+    right: 16%;
+    font-size: 0;
+    padding: 0;
+    z-index: 9;
+    i {
+      font-size: 20px;
+      color: #f3483a;
+    }
+  }
+  .mobile-language {
+    position: fixed;
+    bottom: 20px;
+    right: 23%;
+    font-size: 0;
+    padding: 0 !important;
+    z-index: 9;
+    i {
+      font-size: 20px;
+      color: #f3483a;
+    }
+    .onhover-show-div {
+      top: unset;
+      bottom: 42px;
+      right: 0;
+    }
+  }
+}

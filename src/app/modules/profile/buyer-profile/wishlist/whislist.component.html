@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <ng-container *ngIf="(product$ | async) as products">
+        <ng-container *ngIf="products.length; else NoWishlist">
+            <div class="row">
+                <ng-container *ngFor="let product of products">
+                    <div class="col-sm-4 col-md-3">
+                      <app-product-card [product]="product"></app-product-card>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <ng-template #NoWishlist>
+            <div class="no-wishlist">
+                <div>
+                    <img class="fit-nothing" src="https://www.zestmelange.com/assets/images/icn_no_wishlist.png" alt="nothing">
+                </div>
+                <div>
+                    <h3>Opps, en este momento no tienes productos en la lista de deseos, pero puedes ir a la tienda y agregar algunos!</h3>
+                </div>
+            </div>
+        </ng-template>
+       
+        <div class="row wishlist-buttons pb-3">
+            <div class="col-12">
+                <a [routerLink]="['/home/shop/all']" class="btn btn-solid mb-sm-2">Ir a la tienda</a>
+                <a *ngIf="products.length" [routerLink]="['/pages/checkout']" class="btn btn-solid mb-sm-2">Comprar</a>
+            </div>
+        </div>
+
+    </ng-container>
+</div>

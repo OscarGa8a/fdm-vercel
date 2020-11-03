@@ -1,0 +1,21 @@
+<!--<form class="form" [formGroup]="form">
+    <ng-container *ngIf="elements">
+        <div *ngFor="let element of elements" class="select-item">
+            <input type="radio" formControlName="material" value="{{element.id}}" id="{{element.id}}">
+            <label class="select-label" for="{{element.id}}">{{element.value}}</label>
+        </div>
+    </ng-container>
+    <div class="select-item">
+        <input  type="radio" formControlName="material" value="all" id="all">
+        <label class="select-label" for="all">TODOS</label>
+    </div>
+</form>-->
+<ng-container *ngIf="elements">
+    <div *ngFor="let element of elements" class="select-item">
+        <input type="radio" [formControl]="controlName" [name]="name" value="{{element.id}}" id="{{element.id}}">
+        <label class="select-label" for="{{element.id}}">{{element.value}}</label>
+    </div>
+</ng-container>
+<div class="select-item">
+    <a type="button" class="select-label" [class.clear]="clear" (click)="clearControl()">TODOS</a>
+</div>

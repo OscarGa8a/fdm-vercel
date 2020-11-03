@@ -1,0 +1,237 @@
+<div class="modal-preview" *ngIf="showPreviewImg">
+  <div class="img-preview-container">
+    <span class="material-icons notranslate" (click)="togglePreview()">
+      close
+    </span>
+    <div class="model-preview-imgs-container">
+      <img
+        [src]="previewItem"
+        alt=""
+        srcset=""
+        *ngFor="let previewItem of canvasSidesPreview; let i = index"
+      />
+    </div>
+  </div>
+</div>
+<div class="board-container" (click)="deselect($event)">
+  <div class="left-controls">
+    <div class="group-container">
+      <!-- Crea un boton por cada vista de producto -->
+      <!-- En la vista actual activa el borde rojo-->
+      <button
+        [class.active]="productSide == i"
+        *ngFor="let side of product; let i = index"
+        (click)="changeProductSide(i)"
+      >
+        <!-- Asigna la imagen de la vista del producto -->
+        <img [src]="canvasSidesPreview[i]" alt="" />
+        <!-- Asigna el nombre de la vista del producto -->
+        <span>{{ side.name }}</span>
+      </button>
+    </div>
+  </div>
+  <div class="right-controls">
+    <div class="group-container undo-redo">
+      <div class="sub-group">
+        <button (click)="undo()" [class.disabled]="historyIndex == 0">
+          <i class="fa fa-history"></i>
+        </button>
+        <button
+          (click)="redo()"
+          [class.disabled]="
+            historyIndex == history.length - 1 || history.length == 0
+          "
+        >
+          <i class="fa fa-history rotated"></i>
+        </button>
+      </div>
+    </div>
+    <div class="group-container">
+      <button>
+        <span class="material-icons notranslate">
+          settings
+        </span>
+      </button>
+    </div>
+    <div class="group-container tools">
+      <button (click)="showGuideLines()" [class.active]="guideLines">
+        <span *ngIf="!guideLines" class="material-icons notranslate">
+          grid_off
+        </span>
+        <span *ngIf="guideLines" class="material-icons notranslate">
+          grid_on
+        </span>
+      </button>
+      <button
+        (click)="moveToUp()"
+        [class.disabled]="!objectActive"
+        [disabled]="!objectActive"
+      >
+        <i class="icomoon-layer-up"></i>
+      </button>
+      <button
+        (click)="moveToDown()"
+        [class.disabled]="!objectActive"
+        [disabled]="!objectActive"
+      >
+        <i class="icomoon-layer-down"></i>
+      </button>
+      <button
+        (click)="duplicateElement()"
+        [class.disabled]="!objectActive"
+        [disabled]="!objectActive"
+      >
+        <span class="material-icons notranslate">content_copy</span>
+      </button>
+      <button
+        class="scaling"
+        (click)="toggleUniformScaling()"
+        [class.disabled]="!objectActive"
+        [disabled]="!objectActive"
+      >
+        <span class="material-icons notranslate">
+          format_shapes
+        </span>
+      </button>
+      <button
+        class="align-button"
+        [class.disabled]="!objectActive"
+        [disabled]="!objectActive"
+      >
+        <i class="fa fa-crosshairs"></i>
+        <i class="fa fa-caret-up more"></i>
+
+        <div class="align-container">
+          <span class="material-icons notranslate" (click)="alignToTop()">
+            vertical_align_top
+          </span>
+          <span
+            class="material-icons notranslate"
+            (click)="alignToVerticalCenter()"
+          >
+            vertical_align_center
+          </span>
+          <span class="material-icons notranslate" (click)="alignToBottom()">
+            vertical_align_bottom
+          </span>
+          <button (click)="centerObject()">
+            <app-feather-icons icon="crosshair"></app-feather-icons>
+          </button>
+          <span
+            class="material-icons notranslate rotate"
+            (click)="alignToLeft()"
+          >
+            vertical_align_bottom
+          </span>
+          <span
+            class="material-icons notranslate rotate"
+            (click)="alignToHorizontalCenter()"
+          >
+            vertical_align_center
+          </span>
+          <span
+            class="material-icons notranslate rotate"
+            (click)="alignToRight()"
+          >
+            vertical_align_top
+          </span>
+        </div>
+      </button>
+      <button
+        (click)="deleteElement()"
+        [class.disabled]="!objectActive"
+        [disabled]="!objectActive"
+      >
+        <span class="material-icons notranslate">
+          delete_forever
+        </span>
+      </button>
+      <button (click)="togglePreview()">
+        <span class="material-icons notranslate">
+          zoom_in
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="canvas" #container>
+    <div class="img-container" (swipe)="onSwipe($event)" [class.up]="openPickrOnMobile">
+      <span
+        class="rotating-number"
+        [ngStyle]="{ 'top.%': top }"
+        [class.show]="isRotating"
+        >{{ rotationAngle }}°</span
+      >
+      <!-- Imagen que contiene la vista actual del prodcuto en el canvas -->
+      <img [src]="product[productSide].url+'?w=500'" alt="" #imgBackground />
+      <!-- Asigna alto y ancho al canvas de acuerdo al ancho y alto de la imagen -->
+      <div
+        class="canvas-aux"
+        [ngStyle]="{
+          'top.%': top,
+          'left.px': backgroundWidth * left,
+          'paddingLeft.px': imgOffset
+        }"
+      >
+        <div
+          *ngIf="guideLines && objectActive"
+          class="top-left"
+          [ngStyle]="{
+            'grid-template-columns': 'repeat(' + gridColumn + ',1fr)',
+            'grid-template-rows': 'repeat(' + gridRow + '1fr)'
+          }"
+        >
+          <div
+            *ngFor="let item of grid; let i = index"
+            [class.noTop]="i < gridColumn"
+            [class.noLeft]="i % gridColumn == 0"
+          ></div>
+        </div>
+        <div
+          *ngIf="guideLines && objectActive"
+          class="top-right"
+          [ngStyle]="{
+            'grid-template-columns': 'repeat(' + gridColumn + ',1fr)',
+            'grid-template-rows': 'repeat(' + gridRow + '1fr)'
+          }"
+        >
+          <div
+            *ngFor="let item of grid; let i = index"
+            [class.noTop]="i < gridColumn"
+            [class.noRight]="(i + 1) % gridColumn == 0"
+          ></div>
+        </div>
+        <div
+          *ngIf="guideLines && objectActive"
+          class="bottom-left"
+          [ngStyle]="{
+            'grid-template-columns': 'repeat(' + gridColumn + ',1fr)',
+            'grid-template-rows': 'repeat(' + gridRow + '1fr)'
+          }"
+        >
+          <div
+            *ngFor="let item of grid; let i = index"
+            [class.noBottom]="i >= grid.length - gridColumn"
+            [class.noLeft]="i % gridColumn == 0"
+          ></div>
+        </div>
+        <div
+          *ngIf="guideLines && objectActive"
+          class="bottom-right"
+          [ngStyle]="{
+            'grid-template-columns': 'repeat(' + gridColumn + ',1fr)',
+            'grid-template-rows': 'repeat(' + gridRow + '1fr)'
+          }"
+        >
+          <div
+            *ngFor="let item of grid; let i = index"
+            [class.noBottom]="i >= grid.length - gridColumn"
+            [class.noRight]="(i + 1) % gridColumn == 0"
+          ></div>
+        </div>
+        <!-- Canvas en donde se renderizaran los objetos -->
+        <canvas id="canvas" #canvas></canvas>
+        <canvas id="canvasHidden" #canvasHidden width="0" height="0"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

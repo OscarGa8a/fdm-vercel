@@ -1,0 +1,290 @@
+.option-container {
+  overflow-y: auto;
+  padding-right: 15px;
+  padding-left: 5px;
+  height: calc(100vh - 49px - var(--height-available));
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+.layer-tab {
+  border-right: 2px solid lightgray;
+  padding: 4px 7px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 0;
+}
+.layer-tab:last-child {
+  border-right: none;
+}
+
+.type-of-prints {
+  margin-top: 10px;
+}
+.type-of-prints span {
+  margin-right: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
+.type-of-prints span.active {
+  color: #c3351a;
+}
+
+.current-layer-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  margin-left: 7px;
+}
+.layer-tab.active .current-layer-color {
+  border: 2px solid #333;
+}
+.layer-tab.active {
+  font-weight: 600;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+.color {
+  height: 24px;
+  width: 24px;
+  margin: 0 10px 10px 0;
+  cursor: pointer;
+}
+.color.active {
+  border: 3px solid #333;
+  transform: scale(1.05);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 7px 15px;
+  background: #222;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+.button app-feather-icons {
+  margin-right: 10px;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+}
+.fila:nth-child(2n + 1) {
+  background: #eeeeee;
+}
+.fila p {
+  width: 60%;
+  margin: 0;
+}
+.fila-right {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+.fila-right button {
+  border: 1px solid gray;
+  background: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fila-right button.left > span {
+  transform: rotateY(180deg);
+}
+.fila-right button.bottom > span {
+  transform: rotate(90deg);
+}
+.fila-right button.top > span {
+  transform: rotate(-90deg);
+}
+
+.description span {
+  font-size: 0.95em;
+}
+.description span a {
+  text-decoration: underline;
+  font-weight: 600;
+  color: inherit;
+}
+.note {
+  font-style: italic;
+  margin-bottom: 12px;
+}
+.note span {
+  text-decoration: underline;
+}
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  padding: 0 15px;
+}
+.buttons-container button {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 35px;
+  justify-content: center;
+  background: #eeeeee;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.characteristics-container {
+  border: 2px solid lightgray;
+  border-radius: 15px;
+  padding: 10px 15px;
+  color: #222;
+  margin: 16px 0 12px;
+}
+.characteristics-container h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #222;
+}
+.characteristics-container ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-container label {
+  line-height: 1;
+}
+.item-container input {
+  height: 28px;
+  width: 65px;
+}
+
+.item-container select {
+  height: 28px;
+  min-width: 220px;
+}
+
+.tabs-button {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .fila-right,
+  .fila p {
+    width: 50%;
+  }
+  .description,
+  .note,
+  .characteristics-container {
+    display: none;
+  }
+  .option-container {
+    padding: 0;
+    height: initial;
+  }
+  .tabs-button {
+    display: flex;
+    box-shadow: 0px 10px 28px -6px rgba(0, 0, 0, 0.75);
+    transform: scale(1);
+  }
+  .tabs-button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #f3f3f3;
+    border: none;
+    border-bottom: 4px solid #f3f3f3;
+    width: 100%;
+    height: 65px;
+    font-size: inherit;
+    padding: 10px 0;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #222;
+  }
+  .tabs-button button.active {
+    border-bottom: 4px solid #c3351a;
+  }
+  .tabs-button button small {
+    font-size: 1.2em;
+    font-weight: 600;
+    height: 24px;
+  }
+  .fila {
+    display: none;
+  }
+  .buttons-container {
+    padding: 0 6px;
+    width: 50%;
+  }
+  .buttons-container button {
+    padding: 0 6px;
+  }
+  .fila.show {
+    display: flex;
+  }
+  .filas-container {
+    display: flex;
+    background: #eeeeee;
+  }
+  .fila,
+  .buttons-container {
+    width: 50%;
+    margin: 0;
+    align-items: center;
+  }
+  .fila {
+    padding: 12px 10px;
+  }
+  .fila-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .fila p {
+    display: none;
+  }
+  .buttons-container.hide {
+    display: none;
+  }
+  .buttons-container.padding-bottom {
+    padding-bottom: 12px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .layer-tab {
+    padding: 4px 3px;
+    margin-right: 1px;
+  }
+  .current-layer-color {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+  }
+  .color {
+    width: 22px;
+    height: 22px;
+  }
+  .option-container {
+    font-size: 12px;
+  }
+}

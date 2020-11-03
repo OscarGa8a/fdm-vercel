@@ -1,0 +1,119 @@
+<div class="container-fluid">
+    <div class="row product-adding">
+        <div class="col-lg-12 col-sm-12">
+            <div class="card">
+                <div class="card-header px-3">
+                    <h5>General</h5>
+                    <small>Datos necesarios para liquidar los cobros que se generan a partir de las ventas en el tienda <b>Fuera del molde</b></small>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="data($event)">
+                    <div class="card-body">
+                        <div class="digital-add needs-validation">
+                            <div class="form-group d-md-flex d-sm-block">
+                                <label class="col-form-label mr-3"><span>*</span> Soy: </label>
+                                <div class="m-checkbox-inline mb-0 custom-radio-ml d-md-flex d-sm-inline-block radio-animated">
+                                    <label class="d-block" for="edo-ani">
+                                        <input (change)="onChange()" class="radio_animated" id="edo-ani" value="1" type="radio" formControlName="type_person" name="type_person">
+                                        Persona natural
+                                    </label>
+                                    <label class="d-block" for="edo-ani1">
+                                        <input (change)="onChange()" class="radio_animated" id="edo-ani1" value="2" type="radio" formControlName="type_person" name="type_person">
+                                        Persona juridica
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex d-sm-block">
+                                <label class="col-form-label mr-3"><span>*</span> Regimen: </label>
+                                <div class="m-checkbox-inline mb-0 custom-radio-ml d-md-flex d-sm-inline-block radio-animated">
+                                    <label class="d-block" for="simple">
+                                        <input [attr.disabled]="isDisabled ? '' : null" class="radio_animated" id="simple" value="1" type="radio" formControlName="regimen" name="regimen">
+                                        Simplificado
+                                    </label>
+                                    <label class="d-block" for="comun">
+                                        <input class="radio_animated" id="comun" value="2" type="radio" formControlName="regimen" name="regimen">
+                                        Común
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nit" class="col-form-label"><span>*</span> NIT:</label>
+                                <input formControlName="nif" class="form-control" id="nit" type="text" required="">
+                                <small class="my-2 small-data">
+                                    Al indicar tu NIT podrías beneficiarte en ciertas circustancias de ventajas fiscales, tales como convenios de doble imposición.
+                                    si no nos aportaras un número de indetificación válido, deberemos aplicar una retención fiscal del 15% a tu precio del diseño
+                                    (impuesto en origen) más un 5,5% en concepto de suplemento de solidaridad sobre el impesto en origen.
+                                </small>
+                            </div>
+                            <div class="form-group row px-md-3 mb-0 px-sm-0">
+                                <div class="form-group px-0 mb-0 col-md-6 col-sm-12">
+                                    <label class="col-form-label" for="di"><span>*</span> Documento de identidad (Persona natural/Representante legal):</label>
+                                    <input type="file" class="form-control-file" id="di">
+                                </div>
+                                <div class="form-group col-md-6 mb-0 col-sm-12 pr-md-0 pl-sm-0 pl-md-3">
+                                    <label class="col-form-label" for="rut"><span>*</span> Documento RUT (Persona natural/Jurídica):</label>
+                                    <input type="file" class="form-control-file" id="rut">
+                                </div>
+                            </div>
+                            <ng-container *ngIf="this.persona === '1'">
+                                <!--Persona natural es seleccionada-->
+                                <div class="form-group">
+                                    <label for="names" class="col-form-label pt-0"><span>*</span> Nombres:</label>
+                                    <input formControlName="names" class="form-control" id="names" type="text" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastNames" class="col-form-label pt-0"><span>*</span> Apellidos:</label>
+                                    <input formControlName="lastNames" class="form-control" id="lastNames" type="text" required="">
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="this.persona === '2'">
+                                <!--Persona juridica es seleccionada-->
+                                <div class="form-group">
+                                    <label for="bussines" class="col-form-label pt-0"><span>*</span> Nombre Empresa:</label>
+                                    <input formControlName="names" class="form-control" id="bussines" type="text" required="">
+                                </div>
+                            </ng-container>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label" for="telephone"><span>*</span> Teléfono:</label>
+                                <div class="col-sm-2 mb-sm-2">
+                                    <input class="form-control" value="+57" id="code" type="text"/>
+                                </div>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="telephone" type="text"/>
+                                </div>
+                            </div>
+                            <div class="form-group row px-md-3 px-sm-0">
+                                <div class="form-group px-0 col-md-6 col-sm-12">
+                                    <label for="country" class="col-form-label"><span>*</span> País:</label>
+                                    <select formControlName="country" class="form-control digits" id="country">
+                                        <option>Colombia</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12 pr-md-0 pl-sm-0 pl-md-3">
+                                    <label for="city" class="col-form-label"><span>*</span> Ciudad:</label>
+                                    <input formControlName="city" class="form-control" id="city" type="text" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="col-form-label"> Dirección:</label>
+                                <input formControlName="address" class="form-control" id="address" type="text" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="postal" class="col-form-label"> Código postal:</label>
+                                <input formControlName="postal" class="form-control" id="postal" type="text" required="">
+                            </div>
+
+                        </div>
+                        <div class="form-group mb-0 mt-2">
+                            <div class="product-buttons text-center">
+                                <button type="submit" class="btn btn-primary mr-1">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,12 @@
+<div class="style-div">
+    <h3 (click)="open()" class="title">Estilos</h3>
+    <div #content class="mt-3 content-fdm">
+        <app-radio-bfilter name="style" [controlName]="style" [elements]="stylesData" (selected)="saveData($event)"></app-radio-bfilter>
+    </div>
+</div>
+<div class="collection-collapse-block border-0" [class.open]="visibleProp">
+    <h3 (click)="openProp()" class="collapse-block-title">Propiedades</h3>
+    <div appCollapse [visibleContent]="visibleProp" class="mt-3 collapse-content">
+            <app-radio-bfilter [controlName]="prop" name="prop" [elements]="propData" (selected)="saveProp($event)"></app-radio-bfilter>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.parent-section {
+    position: relative;
+}
+
+.parent-section img {
+    filter: brightness(0.5);
+}
+
+.son-section {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.fit-img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+    object-position: top;
+}

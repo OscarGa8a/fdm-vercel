@@ -1,0 +1,20 @@
+<div class="collection-mobile-back" (click)="mobileFilterBack()">
+  <span class="filter-back">
+    <i class="fa fa-angle-left" aria-hidden="true"></i> back
+</span>
+</div>
+
+<div class="collection-collapse-block border-0" [class.open]="visible">
+  <h3 (click)="open()" class="collapse-block-title">Categorias</h3>
+  <div #content class="collection-collapse-block-content">
+    <div class="collection-brand-filter">
+      <ul class="category-list">
+        <li><a [routerLink]="'/home/shop/women'">Mujeres</a></li>
+        <li><a [routerLink]="'/home/shop/men'">Hombres</a></li>
+        <li><a [routerLink]="'/home/shop/niños-bebes'">Niños y Bebés</a></li>
+        <li><a [routerLink]="'/home/shop/beauty'">Fechas Especiales</a></li>
+        <li><a [routerLink]="'/home/shop/furniture'">Colecciones</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

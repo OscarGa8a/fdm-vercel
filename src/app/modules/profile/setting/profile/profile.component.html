@@ -1,0 +1,59 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="profile-details text-center">
+                        <img *ngIf="(rol$ |async) === 'design';" src="assets/images/dashboard/designer.jpg" alt=""
+                            class="img-fluid img-90 rounded-circle blur-up lazyloaded">
+                        <h5 class="f-w-600 mb-0">John deo</h5>
+                        <span>johndeo@gmail.com</span>
+                    </div>
+                    <hr/>
+                    <ng-container *ngIf="(rol$ |async) === 'design'; else general">
+                        <app-edit-design></app-edit-design>
+                    </ng-container>
+                    <ng-template #general>
+                        <app-edit-profile></app-edit-profile>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card tab2-card">
+                <div class="card-body">
+                    <ngb-tabset class="tab-coupon profile-tabs">
+                        <ngb-tab>
+                            <ng-template ngbTabTitle>
+                                <i data-feather="settings"></i> Cambiar contraseña</ng-template>
+                            <ng-template ngbTabContent>
+                                <form [formGroup]="changeP">
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="current_password">Contraseña actual:</label>
+                                        <input class="form-control" formControlName="currentPassword" type="password" id="current_password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="new_password">Nueva Contraseña:</label>
+                                        <input class="form-control" formControlName="newPassword" type="password" id="new_password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="confirm_password">Confirmar Contraseña:</label>
+                                        <input class="form-control" formControlName="confirmPassword" type="password" id="confirm_password" />
+                                        <div class="error invalid-feedback" style="display: block"
+                                             *ngIf="changeP.get('confirmPassword').errors && changeP.get('confirmPassword').errors.confirmPassword">
+                                            la contraseñas no coinciden
+                                        </div>
+
+                                    </div>
+                                    <button [disabled]="!changeP.valid" class="form-control btn btn-primary" type="submit">Confirmar</button>
+                                </form>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

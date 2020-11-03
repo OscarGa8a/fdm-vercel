@@ -1,0 +1,55 @@
+<div class="row" >
+    <div class="col-lg-6">
+      <div class="header-contact">
+        <ul>
+          <li><i class="fa fa-truck" aria-hidden="true"></i>Envio gratis después de 2 articulos</li>
+          <li><i class="fa fa-flash" aria-hidden="true"></i>Entrega rapida</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6 text-right" *ngIf="!productsService?.catalogMode">
+      <ul class="header-dropdown">
+        <li class="mobile-helpcenter ">
+          <a [routerLink]="'/helpcenter'"><i class="fa fa-question" aria-hidden="true"></i> Centro de ayuda</a>
+        </li>
+        <li (click)="isLogin()" class="onhover-dropdown mobile-account">
+          <i class="fa fa-user" aria-hidden="true"></i> Mi cuenta
+          <ng-container *ngIf="login">
+            <ul class="onhover-show-div">
+              <li>
+                <a [routerLink]="'/admin'" data-lng="en">
+                  nombre
+                </a>
+              </li>
+              <li>
+                <a (click)="logout($event)" data-lng="es">
+                  {{ 'logout' | translate }}
+                </a>
+              </li>
+            </ul>
+          </ng-container>
+        </li>
+        <li class="onhover-dropdown mobile-language ml-3">
+          <i class="ti-world" aria-hidden="true"></i>
+          Idiomas
+          <ul class="onhover-show-div">
+            <li>
+              <a (click)="changeLanguage('es')" data-lng="en">
+                Español
+              </a>
+            </li>
+            <li>
+              <a (click)="changeLanguage('es')">
+                Ingles
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+</div>
+
+
+
+
+

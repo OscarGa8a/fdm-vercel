@@ -1,0 +1,41 @@
+.collections-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 250px;
+}
+
+.card-collection {
+    position: relative;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.card-collection .title {
+    padding: 10px;
+    width: 60%;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.tall {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    grid-row: span 2 / auto;
+}
+
+.wide {
+    background-size: contain;
+    grid-column: span 2;
+}
+
+.card-collection.tall.wide {
+    background-size: cover;
+    background-position: inherit;
+}

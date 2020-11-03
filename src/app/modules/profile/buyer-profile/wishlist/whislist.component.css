@@ -1,0 +1,35 @@
+
+.stock {
+    font-size: 15px;
+}
+
+.wishlist-buttons {
+    padding-top: 35px;
+    text-align: right;
+}
+
+.wishlist-buttons:last-child a {
+    margin-left: 15px;
+}
+
+.btn-solid {
+    padding: 13px 29px;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    border: 2px solid #ff4c3b;
+    border-radius: 0;
+    background-image: linear-gradient(30deg, #ff4c3b 50%, transparent 50%);
+    background-size: 540px;
+    background-repeat: no-repeat;
+    background-position: 0;
+}
+
+.btn-solid:hover {
+    background-position: 100%;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.no-wishlist {
+    text-align: center;
+}

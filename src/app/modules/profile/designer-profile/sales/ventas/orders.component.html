@@ -1,0 +1,60 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Lista de ventas</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-sm-2">
+                            <input [formControl]="search" type='text' class="filter-ngx form-control" placeholder='Buscar por año o nombre del diseño...'/>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-primary-gradien w-sm-100" (click)="updateFilter()" type="button">Buscar</button>
+                        </div>
+                    </div>
+                    <div class="custom-datatable">
+                        <ngx-datatable [scrollbarH]="true" class="bootstrap" [rows]="orderFilter" [columnMode]="'standard'" [headerHeight]="50"
+                            [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+                            <ngx-datatable-column name="Fecha" prop="date"></ngx-datatable-column>
+                            <ngx-datatable-column name="Diseño" prop="design"></ngx-datatable-column>
+                            <ngx-datatable-column name="Nombre del diseño" prop="name_design"></ngx-datatable-column>
+                            <ngx-datatable-column name="Producto" prop="name_product"></ngx-datatable-column>
+                            <ngx-datatable-column name="Cant" prop="count"></ngx-datatable-column>
+                            <ngx-datatable-column name="Comisión" prop="total"></ngx-datatable-column>
+                            <ngx-datatable-column name="Estado de pago" prop="payment_status"></ngx-datatable-column>
+                            <ngx-datatable-column name="Observación" prop="observation"></ngx-datatable-column>
+                            <ngx-datatable-footer>
+                                <ng-template ngx-datatable-footer-template
+                                             let-rowCount="rowCount"
+                                             let-pageSize="pageSize"
+                                             let-curPage="curPage"
+                                             let-offset="offset">
+
+                                    <div class="w-100" style="padding: 5px 10px">
+                                        <div>Total de elementos:
+                                            {{pageSize*curPage < rowCount ? (pageSize*offset)+1  + '-' +  pageSize*curPage : (pageSize*offset)+1 + '-' + rowCount}} de {{ rowCount }} </div>
+                                    </div>
+                                    <datatable-pager
+                                            [pagerLeftArrowIcon]="'datatable-icon-left'"
+                                            [pagerRightArrowIcon]="'datatable-icon-right'"
+                                            [pagerPreviousIcon]="'datatable-icon-prev'"
+                                            [pagerNextIcon]="'datatable-icon-skip'"
+                                            [page]="curPage"
+                                            [size]="pageSize"
+                                            [count]="rowCount"
+                                            [hidden]="!((rowCount / pageSize) > 1)"
+                                            (change)="table.onFooterPage($event)">
+                                    </datatable-pager>
+                                </ng-template>
+                            </ngx-datatable-footer>
+                        </ngx-datatable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>

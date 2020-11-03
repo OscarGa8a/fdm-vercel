@@ -1,0 +1,33 @@
+<div [ngSwitch]="whatIsOpen">
+  <div *ngSwitchCase="'image'">
+    <app-image (eventClose)="sendClose()"></app-image>
+  </div>
+  <div *ngSwitchCase="'text'">
+    <app-text
+      (eventClose)="sendClose()"
+      (eventTextChanges)="handleTextChanges($event)"
+      (eventTextCreated)="handleTextCreated($event)"
+      [text]="text.element"
+      [maxWidth]="text.maxWidth"
+    ></app-text>
+  </div>
+  <div *ngSwitchCase="'color'">
+    <app-color
+      (eventClose)="sendClose()"
+      (eventMultiDesignChanges)="handleMultiDesignChanges($event)"
+      [design]="design"
+      [designs]="designs"
+    ></app-color>
+  </div>
+  <div *ngSwitchCase="'shape'">
+    <app-shape
+      [shape]="shape"
+      (eventClose)="sendClose()"
+      (eventShapeChanges)="handleShapeChanges($event)"
+    ></app-shape>
+  </div>
+  <div *ngSwitchCase="'save'">
+    <app-save></app-save>
+  </div>
+  <div *ngSwitchDefault></div>
+</div>

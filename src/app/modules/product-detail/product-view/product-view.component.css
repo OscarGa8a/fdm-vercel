@@ -1,0 +1,100 @@
+.btn-custom {
+    color: black;
+    border: 2px solid #000000;
+    background-image: linear-gradient(30deg, #fff 50%, transparent 50%);
+}
+.btn-custom:hover {
+    color: #fff;
+    background-position: 100%;
+    background-color: #000000;
+}
+.btn-car {
+    color: black;
+    border: 2px solid #f7a7a7;
+    background-image: linear-gradient(30deg, #fff 50%, transparent 50%);
+}
+.btn-car i {
+    font-size: 18px;
+}
+.btn-car:hover {
+    border-color: #e9ecef;
+    background-position: 100%;
+    background-color: #e9ecef;
+}
+.btn-buy {
+    color: black;
+    border: 2px solid red;
+    background-image: linear-gradient(30deg, #fff 50%, transparent 50%);
+}
+.btn-buy:hover {
+    background-position: 100%;
+    color: #ffffff;
+    background-color: #f34423;
+}
+.btn-wishlit {
+    color: black;
+    border: 2px solid #f7a7a7;
+    background-image: linear-gradient(30deg, #fff 50%, transparent 50%);
+}
+.btn-wishlit:hover {
+    border-color: #e9ecef;
+    background-position: 100%;
+    background-color: #e9ecef;
+}
+/*-------------------General--------------------*/
+.porduct-gallery {
+    padding-top: 0;
+}
+
+.collection-wrapper {
+    padding-top: 20px;
+    background: #f3f2f2;
+}
+
+.detail {
+    background: #fff;
+    margin-bottom: auto;
+    padding: 15px 15px;
+}
+
+.grid-buttons{
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+.grid-buttons a, .grid-buttons button {
+    margin: 0;
+}
+
+.open + .content {
+    max-height: initial;
+    overflow: visible;
+    background: linear-gradient(to bottom right, black, black);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    transition: max-height 0.7s ease, background 0.6s;
+}
+
+.content {
+    max-height: 25px;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, black, white);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    transition: max-height 0.5s ease, background 1s 0.6s;
+}
+
+
+@media screen and (min-width: 780px) {
+    .img-lg {
+        object-fit: contain;
+        height: 703px;
+        width: 100%;
+    }
+}
+
+.link {
+    color: #ff4c3b;
+    cursor: pointer;
+}

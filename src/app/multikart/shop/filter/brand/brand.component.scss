@@ -1,0 +1,28 @@
+.collection-collapse-block {
+  &.open {
+    & .co-content {
+      visibility: visible;
+      transition: visibility 0.8s 0.1s ease, max-height .5s;
+    }
+  }
+}
+
+.collection-collapse-block {
+  &:not(.open) {
+    & .co-content {
+      visibility: hidden;
+      transition: visibility 0s ease .5s, max-height .5s;
+    }
+  }
+}
+
+.collapsible.open  > .inner{
+      max-height: initial;
+      overflow: visible;
+}
+
+
+.collapsible > .inner {
+      max-height: 0;
+      overflow: hidden;
+}

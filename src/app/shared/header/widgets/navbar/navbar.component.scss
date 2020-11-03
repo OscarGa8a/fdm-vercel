@@ -1,0 +1,13 @@
+.m-toggle {
+    right: 0px;
+}
+
+
+@media (min-width: 1200px) {
+    .flex-ul-between {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+

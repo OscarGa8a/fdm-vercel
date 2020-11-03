@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "module": "esnext",
+    "declaration": false,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "paths": {
+      "@shared/*": ["src/app/shared/*"],
+      "core-js/es7/reflect": [
+        "../node_modules/core-js/proposals/reflect-metadata"
+      ],
+      "@angular/*": ["node_modules/@angular/*"],
+      "@saleor/*": ["src/app/graphql/*"]
+    },
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom", "esnext.asynciterable"]
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
+}

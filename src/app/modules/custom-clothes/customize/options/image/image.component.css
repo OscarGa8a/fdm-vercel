@@ -1,0 +1,40 @@
+.option-container {
+  overflow-y: auto;
+  padding-right: 15px;
+  padding-left: 5px;
+  height: calc(100vh - 49px - var(--height-available));
+}
+
+.terminos-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.terminos-input p {
+  margin-bottom: 0;
+}
+p > span {
+  font-size: 0.95em;
+}
+.note {
+  font-style: italic;
+  font-size: 0.95em;
+}
+.note span {
+  text-decoration: underline;
+}
+a {
+  font-weight: 600;
+  text-decoration: underline;
+  color: inherit;
+}
+app-button {
+  display: flex;
+}
+
+@media screen and (max-width: 500px) {
+  .option-container {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,28 @@
+<mat-card (click)="redirect($event, product?.id)" class="example-card">
+  <div class="lable-block">
+    <ng-container *ngIf='product?.sale'>
+      <span class="lable3"></span>
+      <label class="text-new">-{{product?.discount}}%</label>
+    </ng-container>
+  </div>
+    <img mat-card-image class="product-fit-img" src="{{product.pictures[0]}}" alt="{{product?.name}}">
+    <mat-card-content>
+      <h5><b>{{product?.name}}</b></h5>
+      <p class="mb-0"> <b>{{product?.category}}</b></p>
+      <p class="mb-0"><b>Diseño multicapa:</b> {{product?.multicapa ? 'SI' : 'NO'}}</p>
+      <p class="mb-0"><b>Diseño de color editable:</b> {{product?.multicolor ? 'SI' : 'NO'}}</p>
+      <p class="stock mb-0">${{product?.price}}.00</p>
+      <ul class="pb-1" *ngIf="product?.size" >
+        <li class="size" *ngFor="let size of product?.size">{{size}}</li>
+      </ul>
+      <ul class="color-variant" *ngIf="product?.variants">
+        <li [class]="variant.color" *ngFor="let variant of product.variants"></li>
+      </ul>
+      <p *ngIf="product?.stock" class="mb-0">{{product?.stock}} {{product?.stock > 1 ? 'disponibles' : 'disponible'}} </p>
+    </mat-card-content>
+      <mat-card-actions class="space">
+        <button type="button" (click)="addToCart(product)" mat-button><i class="icofont icofont-cart-alt icon"></i></button>
+        <button type="button" (click)="openModal($event, product?.id)" mat-button><span class="material-icons">share</span></button>
+        <button type="button" (click)="removeItem(product)" mat-button><span class="material-icons">delete</span></button>
+      </mat-card-actions>
+</mat-card>

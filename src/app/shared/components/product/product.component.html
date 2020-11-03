@@ -1,0 +1,42 @@
+<!--<div (mouseover)="onHover($event)"
+     (mouseout)="onHover($event)" class="img-wrapper">-->
+<div class="img-wrapper">
+  <div class="lable-block">
+    <ng-container *ngIf='product?.sale'>
+      <span class="lable3"></span>
+      <label class="text-new">-{{product?.discount}}%</label>
+    </ng-container>
+    <span class="lable4 custom__shadow" *ngIf='product?.new'>Nuevo</span>
+  </div>
+  <div class="front">
+    <a [routerLink]="['/home/shop/product', product.id]">
+        <img  #img [src]="img_view ? product.pictures[0] : product.pictures[1]" class="img-fluid" alt="img1">
+        <img  #img2 [src]="!img_view ? product.pictures[0] : product.pictures[1]" class="img-fluid" alt="img2">
+    </a>
+  </div>
+  <div class="cart-info cart-wrap" *ngIf="!productsService?.catalogMode">
+    <a [routerLink]="" [attr.data-target]="'#addtocart'+product.id" data-toggle="modal" (click)="addToCart(product)" data-placement="left" title="Añadir a carrito">
+       <i class="icofont icofont-cart-alt bg-white"></i>
+    </a>
+    <a [routerLink]="" (click)="addToWishlist(product)" title="Añadir a deseos">
+       <i class="ti-heart bg-white" aria-hidden="true"></i>
+    </a>
+    <a [routerLink]="['/custom', product.id]" title="Personalizar">
+       <i class="ti-pencil-alt bg-white" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+<div class="product-detail">
+  <div>
+   <!-- <a [routerLink]="['/home/shop/product', product.id]"><h6>{{product.name}}</h6></a>-->
+    <h4 *ngIf="!productsService?.catalogMode">{{product.price | currency:productsService?.currency:'symbol'}} 
+      <del><span class="money">{{product.salePrice | currency:productsService?.currency:'symbol'}}</span></del> 
+    </h4>
+    <ng-container *ngIf="product.name">
+      <label class="m-0">{{product.name}}</label>
+    </ng-container>
+    <ul class="color-variant" *ngIf="!productsService?.catalogMode">
+      <li [class]="variant.color" *ngFor="let variant of product.variants"></li>
+    </ul>
+  </div>
+</div>

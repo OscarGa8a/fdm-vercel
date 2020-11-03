@@ -1,0 +1,15 @@
+<div class="top-banner-wrapper pb-2">
+    <ng-container *ngIf="section; else simple">
+        <a  class="parent-section">
+            <img [src]="img || 'assets/images/mega-menu/2.jpg'" class="img-fluid fit-img" alt="">
+            <h2 class="son-section">
+                {{section.toUpperCase()}}
+            </h2>
+        </a>
+    </ng-container>
+    <ng-template #simple>
+        <a>
+            <img src="assets/images/mega-menu/2.jpg" class="img-fluid fit-img" alt="">
+        </a>
+    </ng-template>
+</div>

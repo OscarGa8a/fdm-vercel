@@ -1,0 +1,136 @@
+<!-- breadcrumb start -->
+<app-breadcrumb-shop [title]="title"></app-breadcrumb-shop>
+<!-- breadcrumb end -->
+<!-- section start -->
+<section class="section-b-space">
+  <div class="collection-wrapper">
+    <div class="container">
+      <div class="row">
+        <!-- Collection Sidebar -->
+        <div class="col-sm-3 collection-filter">
+          <div class="coll_sidebar_sticky">
+            <div class="collection-filter-block">
+              <app-categories></app-categories>
+            </div>
+            <div class="collection-filter-block">
+              <ng-container *ngIf="tags.length">
+                <app-brand [tagsFilters]="tags" (tagFilters)="updateTagFilters($event)"></app-brand>
+              </ng-container>
+            </div>
+            <ng-container *ngIf="sizes.length">
+              <div class="collection-filter-block">
+                <app-size [tagsFilters]="sizes"></app-size>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="colors.length">
+              <div class="collection-filter-block">
+                <app-color [colorsFilters]="colors" (colorFilters)="updateColorFilters($event)"></app-color>
+              </div>
+            </ng-container>
+            <div class="collection-filter-block">
+                <app-price (priceFilters)="updatePriceFilters($event)"></app-price>
+            </div>
+            <div class="collection-filter-block">
+                <app-styles></app-styles>
+            </div>
+            <div class="collection-filter-block">
+              <app-materials></app-materials>
+            </div>
+          </div>
+        </div>
+        <!-- End Collection Sidebar -->
+        <div class="collection-content col">
+          <div class="page-main-content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-12">
+                  <app-top-banner
+                          [img]="img_section"
+                          [section]="title"></app-top-banner>
+                  <div class="collection-product-wrapper">
+                    <!-- Filter Block Products -->
+                    <div class="product-top-filter">
+                      <div class="container-fluid p-0">
+                        <div class="row">
+                          <div class="col-xl-12">
+                            <div class="filter-main-btn">
+                              <span class="filter-btn btn btn-theme" (click)="mobileFilter()">
+                                <i class="fa fa-filter" aria-hidden="true"></i> Filtros
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <!--Area horizontal de selección -->
+                        <div class="m-0 row">
+                          <div class="p-0 col-xs-12 col-md-3 d-xs-none">
+                            <div style="height: 100%" class="product-filter-content">
+                              <app-grid-view></app-grid-view>
+                            </div>
+                          </div>
+                          <div class="p-0 col-xs-12 col-md-3 b-bottom">
+                            <div class="text-center text-show">
+                              <app-select-view (view)="changeView($event)"></app-select-view>
+                            </div>
+                          </div>
+                          <div class="p-0 col-xs-12 col-md-3 b-bottom">
+                            <div class="text-center text-show">
+                              <label class="m-0"> Productos 1-{{filterItems().length}} de 1000</label>
+                            </div>
+                          </div>
+                          <div class="p-0 col-xs-12 col-md-3">
+                            <div class="text-show">
+                              <app-select-sorting (select)="onChangeSorting($event)"></app-select-sorting>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Block Products -->
+                    <!-- Display Products -->
+                    <div class="product-wrapper-grid">
+                      <div class="container-fluid">
+                        <div class="row" [@Animation]="animation">
+                          <div class="col-xl-3 col-md-6 col-grid-box" *ngFor="let product of filterItems() | orderBy:sortByOrder">
+                            <div class="product-box">
+                              <app-product [img_view]="imgView" [product]="product"></app-product>
+                            </div>
+                            <!-- Infinite Scroll -->
+                            <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="2000" (scrolled)="onScroll()" *ngIf="filterItems().length">
+                            </div>
+                          </div>
+                          <div class="col-sm-12 text-center section-b-space mt-5 no-found" *ngIf="!filterItems().length">
+                            <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
+                            <h3>Sorry! Couldn't find the product you were looking For!!!    </h3>
+                            <p>Please check if you have misspelt something or try searching with other words.</p>
+                            <a [routerLink]="'/home/shop/all'" class="btn btn-solid">continue shopping</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-infinitescroll">
+                      <div class="theme-paggination-block">
+                        <div class="container-fluid p-0">
+                          <div class="row">
+                            <div class="text-center col-sm-12">
+                              <div class="infinite-scrolling mt-4 mb-4 d-inline-block">
+                                <img src="assets/images/loader.gif" *ngIf="!finished && filterItems().length">
+                                <div class="loading-more active" *ngIf="finished && filterItems().length">No More Products</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Infinite Scroll -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- section End -->
+<app-modal-cart></app-modal-cart>

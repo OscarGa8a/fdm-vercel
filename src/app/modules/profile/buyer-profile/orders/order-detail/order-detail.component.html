@@ -1,0 +1,74 @@
+<ng-container *ngIf="(orderDetail$ | async) as order">
+    <div class="container-fluid">
+        <h2>Pedido: {{order?.number_order}} </h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-darker">
+                        <h3 class="card-title text-center mb-0">Datos de envio</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Número de orden: <span>{{order?.number_order}}</span></p>
+                        <p class="card-text mb-0">Nombre: <label class="mb-0">{{order?.name}}</label></p>
+                        <p class="card-text mb-0">Dirección: <label class="mb-0">{{order?.address}}</label></p>
+                        <p class="card-text mb-0">Teléfono: <label class="mb-0">{{order?.telephone}}</label></p>
+                        <p class="card-text mb-0">Estado del envio: <label class="mb-0">{{order?.state}}</label></p>
+                        <p class="card-text mb-0">Guia de envio: <label class="mb-0">{{order?.guide}}</label></p>
+                        <a href="#">Seguir envio</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-darker">
+                        <h3 class="card-title text-center mb-0">Datos de facturación</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Número de orden: <span>{{order?.number_order}}</span></p>
+                        <p class="card-text mb-0">NIT/ID: <label class="mb-0">{{order?.dni}}</label></p>
+                        <p class="card-text mb-0">Nombre: <label class="mb-0">{{order?.name}}</label></p>
+                        <p class="card-text mb-0">Dirección: <label class="mb-0">{{order?.address}}</label></p>
+                        <p class="card-text mb-0">Ciudad: <label class="mb-0">{{order?.city}}</label></p>
+                        <p class="card-text mb-0">Teléfono: <label class="mb-0">{{order?.telephone}}</label></p>
+                        <p class="card-text mb-0">Fecha: <label class="mb-0">{{order?.date}}</label></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Productos</h3>
+        <div class="row">
+            <div *ngFor="let product of order?.products" class="col-md-12">
+                <div class="card-product card">
+                    <div class="card-image">
+                        <img src="{{product.pictures[0]}}" alt="{{product?.name}}">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-content-description">
+                            <h5>{{product?.name}}</h5>
+                            <p class="mb-0 d-inline-block pr-1"> <b>Categoria: {{product?.category}} </b></p>
+                            <p class="stock d-inline-block mb-0"> | <b>Precio: </b> ${{product?.price}}.00 |</p>
+                            <ul class="pb-1 d-inline-block pl-md-1" *ngIf="product?.size" >
+                                <b>Tamaño: </b> 
+                                <li class="size" *ngFor="let size of product?.size">{{size}}</li>
+                            </ul>
+                            <ul class="color-variant d-inline-block pl-lg-1" *ngIf="product?.variants">
+                                | <b>Color: </b> 
+                                <li [class]="variant.color" *ngFor="let variant of product.variants"></li> |
+                            </ul>
+                        </div>
+                        <div class="card-content-button">
+                            <ng-container *ngIf="product?.dispute">
+                                <div class="text-center">
+                                    <p class="mb-0">Código de disputa:</p>
+                                    <p>{{product?.dispute}}</p>
+                                </div>
+                            </ng-container>
+                            <button (click)="openModal(product?.state, product?.id, order?.id)" class="btn btn-primary">
+                                {{product?.state === 'disputa' ? 'Seguir disputa' : 'Abrir disputa'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

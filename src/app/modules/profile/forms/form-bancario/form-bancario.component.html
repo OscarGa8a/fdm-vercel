@@ -1,0 +1,96 @@
+<div class="container-fluid">
+    <div class="row product-adding">
+        <div class="col-lg-12 col-sm-12">
+            <div class="card">
+                <div class="card-header px-3">
+                    <h5>Bancarios</h5>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="data($event)">
+                    <div class="card-body">
+                        <div class="digital-add needs-validation">
+                            <div class="form-group">
+                                <label for="country" class="col-form-label"><span class="mr-1">*</span> País:</label>
+                                <select formControlName="country" class="form-control digits" id="country">
+                                    <option value="">Selecciona tu país</option>
+                                    <option>Colombia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group d-md-flex d-sm-block">
+                                <label class="col-form-label mr-3"><span>*</span> Metodo de pago:</label>
+                                <div class="m-checkbox-inline mb-0 custom-radio-ml d-md-flex d-sm-inline-block radio-animated">
+                                    <label class="d-block" for="edo-ani">
+                                        <input class="radio_animated" id="edo-ani" value="1" type="radio" formControlName="pay" name="pay">
+                                        Transferencia bancaria
+                                    </label>
+                                    <label class="d-block" for="edo-ani1">
+                                        <input class="radio_animated" id="edo-ani1" value="2" type="radio" formControlName="pay" name="pay">
+                                        Paypal
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="digital-add needs-validation">
+                                <div class="form-group">
+                                    <label for="bank" class="col-form-label"><span class="mr-1">*</span> Nombre del banco:</label>
+                                    <select formControlName="bank" class="form-control digits" id="bank">
+                                        <option>Caja social</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="userBank" class="col-form-label">Titular de la cuenta:</label>
+                                    <input formControlName="userBank" class="form-control" id="userBank" type="text" required="">
+                                </div>
+
+                                <div class="form-group d-md-flex d-sm-block">
+                                    <label class="col-form-label mr-3"><span>*</span> Tipo de cuenta:</label>
+                                    <div class="m-checkbox-inline mb-0 custom-radio-ml d-md-flex d-sm-inline-block radio-animated">
+                                        <label class="d-block" for="type">
+                                            <input class="radio_animated" id="type" value="ahorro" type="radio" formControlName="tc" name="tc">
+                                            Ahorro
+                                        </label>
+                                        <label class="d-block" for="type1">
+                                            <input class="radio_animated" id="type1" value="corriente" type="radio" formControlName="tc" name="tc">
+                                            Corriente
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="numberUser" class="col-form-label">Número de la cuenta:</label>
+                                    <input formControlName="numberUser" class="form-control" id="numberUser" type="text" required="">
+                                </div>
+
+                                <div class="digital-add needs-validation">
+                                    <div class="form-group">
+                                        <label for="id" class="col-form-label"><span class="mr-1">*</span> Identificación (Persona natural/Representante legal):</label>
+                                        <select formControlName="id" class="form-control digits" id="id">
+                                            <option value="" disabled selected>Selecciona el tipo de identificación</option>
+                                            <option value="cc">Cedula de Ciudadania (CC)</option>
+                                            <option value="ce">Cedula de Extranjería (CE)</option>
+                                            <option value="pp">Pasaporte (PP)</option>
+                                            <option value="ti">Tarjeta de identidad (TI)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="number_id" class="col-form-label">Número de identificación (Persona natural/Representante legal):</label>
+                                        <input formControlName="number_id" class="form-control" id="number_id" type="text" required="">
+                                    </div>
+
+
+                                    <div class="form-group mb-0 mt-2">
+                                        <div class="product-buttons text-center">
+                                            <button type="submit" class="btn btn-primary mr-1">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,701 @@
+/*Estilos para el contenedor del editor*/
+.board-container {
+  /*Asigna display tipo grid*/
+  display: grid;
+  /*Crea tres columnas*/
+  grid-template-columns: minmax(40px, 85px) 1fr minmax(40px, 75px);
+  /*Asigna tres areas al grid*/
+  grid-template-areas: "left   canvas  right";
+  /*Asigna color de fondo al fondo del visor*/
+  background: #f3f3f3;
+  /*Asigna altura al máximo*/
+  height: 100%;
+}
+/* Estilos para el contenedor de los controles de la izquierda del editor */
+.left-controls {
+  grid-area: left;
+}
+/* Estilos para los botones de los controles de la izquierda del editor */
+.left-controls button {
+  /* Asigna color al boton */
+  color: #4a4a4a;
+  /* Sin color de fondo */
+  background: none;
+  /* Sin bordes */
+  border: none;
+  /*Asigna display tipo flex*/
+  display: flex;
+  /*El contenido se moverá hacia arriba y abajo*/
+  flex-direction: column;
+  /* Asigna alineación de los elementos dentro del bloque */
+  align-items: center;
+  /* Asigna tamaño a la fuente del botón */
+  font-size: 0.9em;
+  /* Asigna el espacio de relleno entre el contenido y el borde, 6px arriba, 6px abajo y no hay relleno a los lados*/
+  padding: 6px 0 6px;
+  /* El ancho del botón es el máximo del area */
+  width: 100%;
+  /* Asigna 10px de borde a los botones */
+  border-radius: 10px;
+  /* El usuario no puede seleccionar el texto */
+  user-select: none;
+}
+/* Estilos para las imagenes en los controles de la izquierda del editor */
+.left-controls button img {
+  /* Asigna ancho a la imagen */
+  width: 44px;
+  /* Asigna una altura máxima a la imagen */
+  max-height: 55px;
+  /* Asigna el espacio de relleno entre el boton y la imagen, 0px arriba-abajo y 7px en izquierda y derecha */
+  padding: 0px 7px;
+  /* Indica como la imagen reemplazada debe redimensionarse para ajustarse al contenedor */
+  -o-object-fit: contain;
+  /* Indica como la imagen reemplazada debe redimensionarse para ajustarse al contenedor */
+  object-fit: contain;
+  /* Asigna color de fondo */
+  background: white;
+  /* Asigna color de fondo */
+  background: #f3f3f3;
+  /* Asigna 11px de borde a las imágenes */
+  border-radius: 11px;
+  /* Sin borde redondo a la izquierda */
+  border-bottom-left-radius: 0;
+  /* Sin borde redondo a la derecha */
+  border-bottom-right-radius: 0;
+  /* Asigna 5px de espacio en la parte inferior */
+  margin-bottom: 5px;
+}
+/* Estilos para la clase active para la vista actual en el editor */
+.left-controls button.active {
+  /* background: #e8e8e8; */
+  /* Asigna peso de la fuente del botón */
+  font-weight: 600;
+}
+/* Estilos para la imagen en el bóton */
+.left-controls button.active img {
+  /* Asigna tamaño y color al borde inferior */
+  border-bottom: 4px solid #c3351a;
+}
+/* Estilos para el contenedor de cada grupo de botones de los controles de la izquierda */
+.left-controls .group-container {
+  /* Asigna color de fondo al contenedor */
+  background: white;
+}
+/* Estilos para el contenedor de cada grupo de botones */
+.group-container {
+  /* background: #f6f6f6; */
+  /* Asigna color de fondo */
+  background: #c9c9c9;
+  /* Asigna ancho al contenedor */
+  width: 64px;
+  /* Asigna margen superior */
+  margin-top: 15px;
+  /* Asigna borde redondo */
+  border-radius: 10px;
+  /* Asigna margenes */
+  margin: 15px 0 0 auto;
+}
+/* Estilos para el contenedor de cada grupo de botones de los controles de la derecha */
+.right-controls .group-container {
+  /* Asigna ancho del contenedor */
+  width: 60px;
+}
+.guide-lines {
+  padding-left: 16px;
+}
+::ng-deep
+  .mat-checkbox-checked.mat-accent
+  .mat-checkbox-ripple
+  .mat-ripple-element {
+  /* opacity: 0.03 !important; */
+  background-color: #c3351a !important;
+}
+/* Estilos para los mat-checkbox de curvar e invertir en las opciones de texto */
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  /* Asigna color de fondo */
+  background-color: #c3351a;
+}
+
+.undo-redo i.deactivated {
+  color: #999;
+  color: #4a4a4a;
+  cursor: initial;
+}
+.preview {
+  border: none;
+  background: none;
+  justify-self: flex-end;
+  margin-right: 10px;
+}
+.preview i {
+  margin-right: 8px;
+}
+/*Estilos para el contenedor de la imagen del fondo del visor y del canvas*/
+.canvas {
+  /*Asigna el nombre del area del grid*/
+  grid-area: canvas;
+  /*Asigna display tipo flex*/
+  display: flex;
+  /*Centra el contenido del display*/
+  justify-content: center;
+  /*El desbordamiento se recorta y el resto del contenido se oculta*/
+  overflow: hidden;
+}
+/*Estilos para el contenedor de la imagen de fondo del visor*/
+.img-container {
+  /* Asigna tipo de posicionamiento  */
+  position: relative;
+  /*Asigna margen 0px vertical y margen de 12px horizontal*/
+  margin: 0 12px;
+}
+/*Estilos para la imagen de fondo del visor*/
+.img-container img {
+  /*Asina ancho máximo a la imagen como el ancho del contenedor*/
+  max-width: 100%;
+  /*Asigna alruta máxima a la imagen*/
+  max-height: calc(100vh - var(--height-available));
+}
+/*Estilos para el elemento canvas*/
+.canvas-aux {
+  /* Asigna tipo de posicionamiento para que se pare encima de la imagen */
+  position: absolute;
+}
+/* Estilos para los contenedores de los elementos del grid del canvas*/
+.top-left,
+.top-right,
+.bottom-left,
+.bottom-right {
+  /* Asigna el tipo de posicionamiento */
+  position: absolute;
+  /* Asigna display tipo grid */
+  display: grid;
+}
+/* Estilos para todos los elementos que son hijos directos de los cuatro contenedores*/
+.top-left > div,
+.top-right > div,
+.bottom-left > div,
+.bottom-right > div {
+  /* Crea un borde a la derecha con un tamaño y color especificos */
+  border-right: 0.0625px dashed lightgray;
+  /* Crea un borde inferior con un tamaño y color especificos */
+  border-bottom: 0.0625px dashed lightgray;
+}
+/* Estilos para todos los elementos que son hijos directos de los dos contenedores*/
+.top-left > div.noTop,
+.bottom-left > div.noTop {
+  /* Sin bordes superiores */
+  border-top: none;
+  /* Crea un borde a la izquierda con un tamaño y color especificos */
+  border-left: 0.25px dashed lightgray;
+}
+/* Estilos para todos los elementos que son hijos directos de los dos contenedores*/
+.top-left > div.noTop.noLeft,
+.bottom-left > div.noTop.noLeft {
+  /* Sin bordes superiores */
+  border-top: none;
+  /* Sin bordes inferiores */
+  border-left: none;
+}
+/* Estilos para todos los elementos que son hijos directos de los dos contenedores*/
+.top-left > div.noLeft,
+.bottom-left > div.noLeft {
+  /* Sin bordes a la izquierda */
+  border-left: none;
+  /* Crea un borde inferior con un tamaño y color especificos */
+  border-bottom: 0.55px dashed lightgray;
+}
+/* Estilos para todos los elementos que son hijos directos de los dos contenedores*/
+.bottom-right > div.noBottom,
+.bottom-left > div.noBottom {
+  /* Sin bordes inferiores */
+  border-bottom: none;
+  /* Crea un borde a la derecha con un tamaño y color especificos */
+  border-right: 0.5px dashed lightgray;
+}
+/* Estilos para todos los elementos que son hijos directos del contenedor */
+.bottom-left > div.noBottom.noLeft {
+  /* Sin bordes inferiores */
+  border-bottom: none;
+  /* Sin bordes a la izquierda */
+  border-left: none;
+}
+/* Estilos para todos los elementos que son hijos directos del contenedor */
+.top-right > div.noTop {
+  /* Sin bordes superiores */
+  border-top: none;
+  /* Crea un borde a la izquierda con un tamaño y color especificos */
+  border-left: 0.25px dashed lightgray;
+}
+/* Estilos para todos los elementos que son hijos directos del contenedor */
+.top-right > div.noRight {
+  /* Sin bordes a la derecha */
+  border-right: none;
+  /* Crea un borde inferior con un tamaño y color especificos */
+  border-bottom: 0.5px dashed lightgray;
+}
+/* Estilos para todos los elementos que son hijos directos del contenedor */
+.top-right > div.noTop.noRight {
+  /* Sin bordes superiores */
+  border-top: none;
+  /* Sin bordes a la derecha */
+  border-right: none;
+}
+/* Estilos para todos los elementos que son hijos directos del contenedor */
+.bottom-right > div.noRight {
+  /* Sin bordes a la derecha */
+  border-right: none;
+  /* Crea un borde inferior con un tamaño y color especificos */
+  border-bottom: 0.5px dashed lightgray;
+}
+/* Estilos para todos los elementos que son hijos directos del contenedor */
+.bottom-right > div.noRight.noBottom {
+  /* Sin bordes a la derecha */
+  border-right: none;
+  /* Crea un borde inferior con un tamaño y color especificos */
+  border-bottom: none;
+}
+/* Estilos para el contenedor del grid superior izquierdo */
+.top-left {
+  /* Asigna posición desde la izquierda */
+  left: 0;
+  /* Asigna posición desde la derecha */
+  right: 50%;
+  /* Asigna posición desde la parte superior */
+  top: 0;
+  /* Asigna posición desde la parte inferior */
+  bottom: 50%;
+  /* Crea un borde a la derecha con un tamaño y color especificos */
+  border-right: 0.5px solid gray;
+  /* Crea un borde inferior con un tamaño y color especificos */
+  border-bottom: 0.5px solid gray;
+}
+/* Estilos para el contenedor del grid superior derecho */
+.top-right {
+  /* Asigna posición desde la izquierda */
+  left: 50%;
+  /* Asigna posición desde la derecha */
+  right: 0;
+  /* Asigna posición desde la parte superior */
+  top: 0;
+  /* Asigna posición desde la parte inferior */
+  bottom: 50%;
+  /* Crea un borde inferior con un tamaño y color especificos */
+  border-bottom: 0.5px solid gray;
+}
+/* Estilos para el contenedor del grid inferior izquierdo */
+.bottom-left {
+  /* Asigna posición desde la izquierda */
+  left: 0;
+  /* Asigna posición desde la derecha */
+  right: 50%;
+  /* Asigna posición desde la parte superior */
+  top: 50%;
+  /* Asigna posición desde la parte inferior */
+  bottom: 0;
+  /* Crea un borde a la derecha con un tamaño y color especificos */
+  border-right: 0.5px solid gray;
+}
+/* Estilos para el contenedor del grid inferior derecho */
+.bottom-right {
+  /* Asigna posición desde la izquierda */
+  left: 50%;
+  /* Asigna posición desde la derecha */
+  right: 0;
+  /* Asigna posición desde la parte superior */
+  top: 50%;
+  /* Asigna posición desde la parte inferior */
+  bottom: 0;
+}
+/* Estilos para el contenedor de los controles de la derecha del editor */
+.right-controls {
+  /* Asigna el nombre del area del grid */
+  grid-area: right;
+  /* Asigna espacio de relleno a la derecha */
+  padding-right: 16px;
+  /* Asigna tamaño de fuente */
+  font-size: 24px;
+  /* El usuario no puede seleccionar el boton */
+  user-select: none;
+}
+/* Estilos para los botones de los controles de la derecha */
+.right-controls button {
+  /* Asigna alto de línea entre cada botón */
+  line-height: 0;
+}
+/* Estilos para los botones con la clase active */
+.right-controls button.active {
+  /* Asigna color del icono del botón */
+  color: #c3351a;
+}
+/* Estilos para los botones de la derecha con la clase disabled */
+.right-controls button.disabled {
+  /* Asigna color del icono del botón */
+  color: #4a4a4a;
+}
+/* Estilos para los iconos y los span de los botones de la derecha */
+.right-controls button i,
+.right-controls button span {
+  /* Asigna tamaño */
+  font-size: 20.5px;
+}
+/* Estilos para el botón de alineación de los controles de la derecha */
+.align-button {
+  /* Asigna tipo de posicionamiento  */
+  position: relative;
+}
+/* Selecciona cualquier elemento que no están en la clase '.disabled' */
+.align-button:not(.disabled):hover .align-container {
+  /* Asigna display tipo flex */
+  display: flex;
+}
+/* Estilos para el icono de alineación con la clase more */
+.right-controls button.align-button i.more {
+  /* Asigna tipo de posicionamiento  */
+  position: absolute;
+  /* Asigna tamaño al icono */
+  font-size: 0.7em;
+  /* Realiza rotación al icono */
+  transform: rotate(270deg);
+  /* Asigna posición desde la izquierda */
+  left: 10px;
+  /* Asigna posición desde la parte inferior */
+  bottom: 4px;
+}
+/* Estilos para los spans y los botones de alineación */
+.align-container span,
+.align-container button {
+  /* Sin borde */
+  border: none;
+  /* Sin color de fondo */
+  background: none;
+  /* Asigna a los iconos de los botones y span */
+  color: #4a4a4a;
+  /* Asigna display tipo flex */
+  display: flex;
+  /* Centra los botones y span */
+  justify-content: center;
+  /* Asigna alineación de los elementos dentro del bloque */
+  align-items: center;
+  /* Asigna tamaño de borde */
+  border-radius: 4px;
+  /* Sin margen vertical y 3px de margen horizontal */
+  margin: 0 3px;
+  /* Asigna ancho */
+  width: 38px;
+  /* Asigna altura */
+  height: 38px;
+  /* Asigna cursor de tipo puntero */
+  cursor: pointer;
+  /* Asigna cursor de tipo puntero */
+  padding: 0 6.25px;
+}
+/* Estilos para el botón con el icono de format_shapes */
+.scaling {
+  /* Asigna altura */
+  height: 47px;
+}
+/* Estilos para el contenedor de los botones de alineación */
+.align-container {
+  /* Asigna display tipo flex para que se muevan horizontal respecto al botón de alineación */
+  display: flex;
+  /* Asigna alineación de los elementos dentro del bloque */
+  align-items: center;
+  /* Sin margen vertical y margen horizontal automatico */
+  margin: 0 auto;
+  /* Asigna fondo del contenedor */
+  background: #f6f6f6;
+  /* Asigna bordes al contenedor */
+  border-radius: 8px;
+  /* Sin espacio de relleno vertical y con 15px horizontal */
+  padding: 0 15px;
+  /* Asigna altura al contenedor */
+  height: 55px;
+  /* Asigna tipo de posicionamiento  */
+  position: absolute;
+  /* Asigna posición desde la parte inferior */
+  bottom: -55px;
+  /* Asigna posición desde la derecha */
+  right: 0;
+  /* Asigna el nivel de pila para que los botones queden por encima de los demás elementos */
+  z-index: 99;
+  /* Oculta los elementos del contenedor */
+  display: none;
+}
+/* Estilos para los botones de los controles de la derecha */
+.right-controls button {
+  /* Botones sin borde */
+  border: none;
+  /* Asigna display tipo flex */
+  display: flex;
+  /* Ancho de los botones al máximo */
+  width: 100%;
+  /* Texto alineado al centro */
+  text-align: center;
+  /* Asigna tamaño de fuente */
+  font-size: 18px;
+  /* Asigna alineación de los elementos dentro del bloque */
+  align-items: center;
+  /* Alinea los botones en el centro */
+  justify-content: center;
+  /* Asigna color de fondo */
+  background: transparent;
+  /* Asigna color a los iconos en los botones */
+  color: #4a4a4a;
+  /* Asigna espacio de relleno de 9px arriba y abajo */
+  padding: 9px 0;
+  /* El cursor se pone en modo puntero al pasar por encima de los botones */
+  cursor: pointer;
+}
+/* Estilos para la paleta de los controles de la derecha */
+.right-controls button.palette {
+  /* Oculta la paleta */
+  display: none;
+}
+/* Estilos para la clase disabled de la paleta de los controles de la derecha */
+.right-controls button.palette:disabled {
+  /* Asigna opaco a la paleta */
+  opacity: 0.7;
+}
+/* Estilos para mostrar la rotación del objeto del canvas */
+.rotating-number {
+  /* Asigna tipo de posición */
+  position: absolute;
+  /* Asigna posición a la izquierda */
+  left: 0;
+  /* Asigna posición a la derecha */
+  right: 0;
+  /* Asigna margen superior */
+  margin-top: -25px;
+  /* Asigna ancho de fuente */
+  font-size: 1.2em;
+  /* Asigna peso de la fuente */
+  font-weight: 600;
+  /* Asigna alineamiento al texto */
+  text-align: center;
+  /* Oculta el elemento */
+  display: none;
+}
+/* Estilos para mostrar la rotación del objeto del canvas cuando tiene la clase show */
+.rotating-number.show {
+  /* Asigna tipo de display */
+  display: initial;
+}
+
+.flip:before {
+  transform: rotateY(180deg);
+  display: inline-block;
+}
+/* Estilos para el icono del botón de rehacer de los controles de la derecha */
+.rotated {
+  /* Realiza la rotación del icono */
+  transform: rotateY(180deg);
+}
+/* Estilos para los iconos de alineación de los controles de la derecha */
+.rotate {
+  /* Realiza la rotación de los iconos */
+  transform: rotate(90deg);
+}
+/* Estilos para el modal de previsualización del diseño en producto */
+.modal-preview {
+  /* Asigna tipo de posicionamiento  */
+  position: fixed;
+  /* Asigna posición desde la parte superior */
+  top: 0;
+  /* Asigna posición desde la izquierda */
+  left: 0;
+  /* Asigna posición desde la derecha */
+  right: 0;
+  /* Asigna altura */
+  height: 100vh;
+  /* Asigna color de fondo */
+  background: #4a4a4aad;
+  /* Asigna el nivel de pila para que el modal quede por encima de los demás elementos */
+  z-index: 999999;
+  /* Asigna display tipo flex */
+  display: flex;
+  /* Alinea los items en el centro */
+  justify-content: center;
+  /* Asigna alineación de los elementos dentro del bloque */
+  align-items: center;
+  /* Crea animación llamada show que dura 0.3s, movimiento fácil, una espera de 1s, iteración normal y dirección hacia adelante */
+  animation: show 0.3s ease 0s 1 normal forwards;
+  /* opacity: 0; */
+}
+/* Estilos para el contenedor de la imagen de previsualización */
+.img-preview-container {
+  /* El cotenido es recortado y no se muestran barras de posición */
+  overflow: hidden;
+  /* Asigna color de fondo */
+  background: white;
+  /* Asigna espacio de relleno en los cuatro lados */
+  padding: 15px;
+  /* Asigna tamaño de los bordes */
+  border-radius: 12px;
+  /* Crea borde de tamaño y color específicos */
+  border: 2px solid #c3351a;
+  /* Asigna tipo de posicionamiento */
+  position: relative;
+  /* Asigna ancho al 40% el ancho del viewport */
+  width: 40vw;
+}
+/* Estilos para el contenedor de la imagen */
+.model-preview-imgs-container {
+  /* Asigna display tipo flex */
+  display: flex;
+  /* transform: translateX(-100%); */
+  /* Agrega una transformación que dura 0.3s con un movimiento fácil */
+  transition: transform 0.3s ease-in;
+}
+/* Estilos para la imagen en el modal */
+.model-preview-imgs-container img {
+  /* Asigna ancho mínimo */
+  min-width: 100%;
+  /* Indica como la imagen reemplazada debe redimensionarse para ajustarse al contenedor */
+  object-fit: contain;
+}
+/* Estilos para el icono para cerrar el modal */
+.img-preview-container span {
+  /* Asigna posición absoluta */
+  position: absolute;
+  /* Asigna posición desde la parte superior */
+  top: 7px;
+  /* Asigna posición desde la derecha */
+  right: 7px;
+  /* Asigna cursor tipo puntero */
+  cursor: pointer;
+}
+/* Permite controlar los pasos intermedios en una secuencia de animación */
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* En pantallas de 960 px o menos */
+@media screen and (max-width: 960px) {
+  /*Estilos para el contenedor del editor*/
+  .board-container {
+    /*Crea una columna*/
+    grid-template-columns: 1fr;
+    /*Asigna un area al grid*/
+    grid-template-areas: "canvas";
+    /* Asigna tipo de posicionamiento  */
+    position: relative;
+  }
+  /* Estilos para el contenedor de cada grupo de botones */
+  .group-container,
+  .align-container {
+    /* Asigna color de fondo */
+    background: #e4e4e4c2;
+  }
+  /* Estilos para los botones de rehacer y deshacer */
+  .group-container.undo-redo {
+    /* Sin color de fondo */
+    background: none;
+  }
+  /* Estilos para el contenedor de los controles de la izquierda del editor */
+  .left-controls {
+    /* No visualiza los controles de la izquierda */
+    display: none;
+  }
+  /* Estilos para el contenedor de los controles de la derecha del editor */
+  .right-controls {
+    /* Asigna nombre del área del grid */
+    grid-area: initial;
+    /* Sin espacio de relleno inferior */
+    padding-bottom: 0;
+  }
+  /* Estilos para el contenedor de cada grupo de botones de los controles de la derecha */
+  .right-controls .group-container {
+    /* Asigna tipo de posicionamiento  */
+    position: absolute;
+    /* Asigna posición desde la parte superior */
+    top: 0;
+    /* Asigna posición desde la derecha */
+    right: 10px;
+    /* Asigna el nivel de pila para que los botones queden por encima de los demás elementos */
+    z-index: 5;
+    /* Asigna ancho */
+    width: 55px;
+  }
+  /* Estilos para el grupo de botones de herramienta de los controles de la derecha */
+  .right-controls .group-container.tools {
+    /* Asigna posición desde la parte superior */
+    top: 56px;
+  }
+  /* Estilos para el contenedor de los botones rehacer y deshacer de los controles de la derecha */
+  .right-controls .group-container.undo-redo {
+    /* Asigna tipo de posicionamiento  */
+    position: absolute;
+    /* Asigna posición desde la izquierda */
+    left: 8px;
+    /* Asigna posición desde la derecha */
+    right: initial;
+    /* Asigna el nivel de pila para que los botones queden por encima de los demás elementos */
+    z-index: 99;
+  }
+  /* Estilos para los botones rehacer y deshacer de los controles de la derecha */
+  .right-controls .group-container.undo-redo button {
+    /* Asigna color de fondo */
+    background: #e4e4e4c2;
+    /* Asigna borde redondo */
+    border-radius: 50%;
+    /* Asigna ancho */
+    width: 47px;
+    /* Asigna margen desde la parte inferior */
+    margin-bottom: 5px;
+  }
+  /* Estilos para la paleta de los controles de la derecha */
+  .right-controls button.palette {
+    /* Asigna display tipo flex */
+    display: flex;
+  }
+  /* Estilos para el contenedor de los controles de la izquierda */
+  .left-controls .group-container {
+    /* Asigna ancho al contenedor */
+    width: 55px;
+  }
+  /*Estilos para el contenedor de la imagen de fondo del visor*/
+  .img-container {
+    /* Sin margen en los cuatro lados */
+    margin: 0;
+    /* Sin espacio de relleno en la izquierda */
+    padding-left: 0;
+    /* Sin espacio de relleno en la derecha */
+    padding-right: 0;
+    /* Agrega una transformación que dura 0.2s con un movimiento fácil */
+    transition: transform 0.2s ease;
+  }
+  /* Estilos para la clase up dentro del contenedor de la imagen de fondo */
+  .img-container.up {
+    /* Traslada la imagen un 28% hacia arriba */
+    transform: translateY(-28%);
+  }
+  /* Estilos para la imagen de fondo del visor */
+  .img-container img {
+    /* Asigna altura máxima a la imagen */
+    max-height: calc(100vh - var(--height-available));
+    /* Sin margen vertical y margen horizontal automática */
+    margin: 0 auto;
+    /* Indica como la imagen reemplazada debe redimensionarse para ajustarse al contenedor */
+    object-fit: contain;
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+}
+/* En pantallas de 500 px o menos */
+@media screen and (max-width: 500px) {
+  /* Estilos para el contenedor de los botones de alineación */
+  .align-container {
+    /* Asigna posición desde la parte inferior */
+    bottom: initial;
+    /* Asigna posición desde la parte derecha */
+    right: 100%;
+    /* Sin espacio de relleno en los cuatro lados */
+    padding: 0;
+  }
+}
